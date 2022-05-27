@@ -24,6 +24,16 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       }
     },
+    fullName : {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 150]
+      }
+    },
+    bio: {
+      type: DataTypes.TEXT
+    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
@@ -50,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
   
   User.associate = function(models) {
     // associations can be defined here
+    User.hasMany(models.Business, {foreignKey: 'userId'})
   };
   
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function

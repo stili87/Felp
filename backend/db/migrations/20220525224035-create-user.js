@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       bio: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       fullName: {

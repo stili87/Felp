@@ -12,6 +12,9 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [biography, setBiography] = useState('')
+  const [fullName, setFullName] = useState('')
+  
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -19,7 +22,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ email, username, password, biography, fullName }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -33,6 +36,15 @@ function SignupFormPage() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
+      <label>
+        Full Name
+        <input
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+        />
+      </label>
       <label>
         Email
         <input
@@ -49,6 +61,15 @@ function SignupFormPage() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+        />
+      </label>
+      <label>
+        Biography
+        <input 
+            type='text'
+            value={biography}
+            onChange={(e) => setBiography(e.target.value)}
+            required
         />
       </label>
       <label>

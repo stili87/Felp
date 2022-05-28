@@ -1,0 +1,11 @@
+#business-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    
+}
+
+#business-form-submit {
+    max-width: 100px;
+}

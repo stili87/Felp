@@ -10,11 +10,27 @@ const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Please provide a valid email.'),
+    .withMessage('Please provide a valid email.')
+    .custom((value) => {
+      return User.findOne({ where: { email: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided Email Address is already in use by another account');
+          }
+        });
+    }),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    .withMessage('Please provide a username with at least 4 characters.')
+    .custom((value) => {
+      return User.findOne({ where: { username: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided User Name is already in use by another account');
+          }
+        });
+    }),
   check('username')
     .not()
     .isEmail()
@@ -23,6 +39,12 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
+  check('biography')
+    .exists({checkFalsy: true})
+    .withMessage('Biography must be filled out.'),
+  check('fullName')
+    .exists({checkFalsy: true})
+    .withMessage('Biography must be filled out.'),
   handleValidationErrors
 ];
 
@@ -32,15 +54,9 @@ const validateSignup = [
     '/',
     validateSignup,
     asyncHandler(async (req, res) => {
-      
       const { email, password, username, biography, fullName } = req.body;
-      
-      
-      console.log(req.body)
       const user = await User.signup({ email, username, password, biography, fullName });
-  
       await setTokenCookie(res, user);
-  
       return res.json({
         user,
       });

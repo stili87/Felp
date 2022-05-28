@@ -36,7 +36,7 @@ module.exports = {
       },
       city: {
         allowNull: false,
-        type: Sequelize.STRING(25)
+        type: Sequelize.STRING(100)
       },
       state: {
         allowNull: false,
@@ -44,7 +44,7 @@ module.exports = {
       },
       zipcode: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(25)
       },
       lat: {
         type: Sequelize.DECIMAL
@@ -54,7 +54,7 @@ module.exports = {
       },
       phone: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(15)
       },
       tagId: {
         type: Sequelize.INTEGER,

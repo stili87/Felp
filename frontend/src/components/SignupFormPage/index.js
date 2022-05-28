@@ -65,7 +65,7 @@ function SignupFormPage() {
       </label>
       <label>
         Biography
-        <input 
+        <textarea 
             type='text'
             value={biography}
             onChange={(e) => setBiography(e.target.value)}

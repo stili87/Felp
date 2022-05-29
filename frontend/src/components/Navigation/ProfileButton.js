@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
@@ -6,22 +6,26 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+  const changeMenu = () => {
+    // if (showMenu) return;
+    setShowMenu(!showMenu);
   };
   
-  useEffect(() => {
-    if (!showMenu) return;
+  // const closeMenu = () => {
+  //   console.log('closed menu triggered')
+  //   setShowMenu(false);
+  // };
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
 
-    document.addEventListener('click', closeMenu);
-  
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  // useEffect(() => {
+  //   if (!showMenu) return;
+
+  //   if(showMenu){
+  //   document.addEventListener('click', closeMenu);
+  //   return () => document.removeEventListener("click", closeMenu);
+  //   }
+
+  // }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
@@ -30,7 +34,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button onClick={changeMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (

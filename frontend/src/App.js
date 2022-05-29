@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import BusinessFormPage from "./components/BusinessForm/index"
+import { getAllTags } from "./store/tag";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +17,10 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getAllTags())
+  },[dispatch])
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -24,9 +29,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          {sessionUser && <BusinessFormPage />}
         </Switch>
       )}
-      {sessionUser && <BusinessFormPage />}
     </>
   );
 }

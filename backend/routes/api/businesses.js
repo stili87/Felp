@@ -1,10 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const {Business} = require('../../db/models')
 
 const validateBusiness = [
     check('title')
@@ -44,7 +44,9 @@ const validateBusiness = [
   ];
 
   router.post('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => {
-    console.log(req.user)
+    console.log(req.body)
+        const newBusiness = await Business.create(req.body)
+        console.log(newBusiness) 
   }))
 
   module.exports = router;

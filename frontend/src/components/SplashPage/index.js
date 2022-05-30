@@ -72,7 +72,7 @@ const SplashPage = () => {
                 }
             </div>
             <div id='splash-right'>
-                <img src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png' />
+                <img alt='splash page' src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png' />
             </div>
         </div>
     )

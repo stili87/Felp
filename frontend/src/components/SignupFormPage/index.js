@@ -16,10 +16,11 @@ function SignupFormPage() {
   const [fullName, setFullName] = useState('')
   
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/listings" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log({email, username, password, biography, fullName})
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, biography, fullName }))
@@ -32,65 +33,72 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id='sign-up-form' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
         Full Name
+        </label>
         <input
+        className="sign-up-input"
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           required
         />
-      </label>
       <label>
         Email
+        </label>
         <input
+        className="sign-up-input"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
       <label>
         Username
+        </label>
         <input
+        className="sign-up-input"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-      </label>
       <label>
         Biography
+        </label>
         <textarea 
+            rows='50'
+            className="sign-up-textarea"
             type='text'
             value={biography}
             onChange={(e) => setBiography(e.target.value)}
             required
         />
-      </label>
       <label>
         Password
+        </label>
         <input
+        className="sign-up-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
       <label>
         Confirm Password
+        </label>
         <input
+          className="sign-up-input"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Sign Up</button>
+      <button className="sign-up-submit-button" type="submit">Sign Up</button>
     </form>
   );
 }

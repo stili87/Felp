@@ -9,6 +9,7 @@ import { getAllTags } from "./store/tag";
 import {getAllBusinesses} from "./store/business"
 import BusinessDisplay from "./components/BusinessDisplay";
 import BusinessEditForm from "./components/BusinessEditForm";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
+            <SplashPage />
+          </Route>
+          <Route exact path='/listings'>
             <BusinessDisplay />
           </Route>
           <Route exact path="/signup">

@@ -97,7 +97,7 @@ module.exports = (sequelize, DataTypes) => {
       username,
       email,
       hashedPassword,
-      bio: biography,
+      biography,
       fullName
     });
     return await User.scope('currentUser').findByPk(user.id);

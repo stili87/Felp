@@ -7,7 +7,6 @@ const {Tag} = require('../../db/models')
 
 router.get('/', asyncHandler(async(req, res)=> {
     const allTags = await Tag.findAll()
-     console.log(allTags)
     res.send (allTags)
 }))
 module.exports = router;

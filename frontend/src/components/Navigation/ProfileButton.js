@@ -12,8 +12,7 @@ function ProfileButton({ user }) {
   };
   
   // const closeMenu = () => {
-  //   console.log('closed menu triggered')
-  //   setShowMenu(false);
+    //   setShowMenu(false);
   // };
 
 

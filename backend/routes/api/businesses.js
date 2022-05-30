@@ -43,10 +43,15 @@ const validateBusiness = [
     handleValidationErrors
   ];
 
+  router.get('/', asyncHandler(async (req,res) => {
+    const allBussinesses = await Business.findAll()
+   res.send(allBussinesses)
+
+  }))
+
   router.post('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => {
-    console.log(req.body)
         const newBusiness = await Business.create(req.body)
-        console.log(newBusiness) 
+        return newBusiness
   }))
 
   module.exports = router;

@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import BusinessFormPage from "./components/BusinessForm/index"
 import { getAllTags } from "./store/tag";
+import {getAllBusinesses} from "./store/business"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ function App() {
     dispatch(getAllTags())
   },[dispatch])
 
+  useEffect(() => {
+    dispatch(getAllBusinesses())
+  },[dispatch])
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -29,7 +34,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/business/create">
           {sessionUser && <BusinessFormPage />}
+          </Route>
         </Switch>
       )}
     </>

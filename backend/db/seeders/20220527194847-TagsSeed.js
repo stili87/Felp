@@ -10,7 +10,10 @@ module.exports = {
       */
    return queryInterface.bulkInsert('Tags', [{
      type: 'Resturant'
-   }], {});
+   },
+   {
+    type: 'LawFirm'
+  }], {});
   },
 
   down: (queryInterface, Sequelize) => {

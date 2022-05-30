@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import './business-form.css'
 import { createBusiness } from "../../store/business";
 
+
 const BusinessFormPage = () => {
     const sessionUser = useSelector((state) => state.session.user);
-    const tags = Object.entries(useSelector(state => state.tags))
+    const stateTags = useSelector(state => state.tags)
+    const tags = Object.entries(stateTags)
+    const [tagId, setTagId] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [address, setAddress] = useState('')
@@ -16,13 +19,14 @@ const BusinessFormPage = () => {
     const [phone, setPhone] = useState('')
     const [photoUrl, setPhotoUrl] = useState('')
     const [websiteUrl, setWebsiteUrl] = useState('')
-    const [tagId, setTagId] = useState(tags[0][0])
+    const [errors, setErrors] = useState([]);
     const history = useHistory()
     const dispatch = useDispatch();
 
+
     const handleOnSubmit = async (e) => {
-        const userId = sessionUser.id
         e.preventDefault()
+        const userId = sessionUser.id
         const newBusiness = {
             userId,
             title,
@@ -36,8 +40,12 @@ const BusinessFormPage = () => {
             websiteUrl,
             tagId
         }
-        const newBusinessRes = await dispatch(createBusiness(newBusiness))
-        if (newBusinessRes) {
+        dispatch(createBusiness(newBusiness)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          })
+
+        if (errors.length > 0) {
             history.push('/')
         }
     }
@@ -45,6 +53,9 @@ const BusinessFormPage = () => {
     return (
         <>
             <form id='business-form' onSubmit={e => handleOnSubmit(e)}>
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <label>Business Name:</label>
                 <input
                     name='title'
@@ -122,12 +133,10 @@ const BusinessFormPage = () => {
                 value={tagId}
                 onChange={e=>setTagId(e.target.value)}
                 >
-                    {tags.map(tag => <option key={tag[0]} value={tag[0]}>{tag[1]}</option>)}
+                    {tags && tags.map(tag => <option key={tag[0]} value={tag[0]}>{tag[1]}</option>)}
                 </select>
                 <button id="business-form-submit" type="submit">Submit</button>
-
             </form>
-
         </>
     )
 }

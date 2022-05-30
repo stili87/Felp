@@ -27,8 +27,12 @@ export const createBusiness = business => async dispatch => {
         method: "POST",
         body: JSON.stringify(business)
     })
+
     const newBusiness = await response.json()
-    dispatch(actionAddBusiness(newBusiness))
+
+    if(newBusiness){
+        dispatch(actionAddBusiness(newBusiness))
+    }
     return newBusiness
 }
 
@@ -40,7 +44,7 @@ const businessReducer = (state={}, action) => {
             return newState
         case ADD_BUSINESS:
             let newAddState = {}
-            newAddState = {...state, [action.id]: action}
+            newAddState = {...state, [action.business.id]: action.business}
             return newAddState
         default:
             return state

@@ -9,7 +9,7 @@ const BusinessFormPage = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const stateTags = useSelector(state => state.tags)
     const tags = Object.entries(stateTags)
-    const [tagId, setTagId] = useState('')
+    const [tagId, setTagId] = useState(1)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [address, setAddress] = useState('')
@@ -26,6 +26,7 @@ const BusinessFormPage = () => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
+
         const userId = sessionUser.id
         const newBusiness = {
             userId,
@@ -40,14 +41,13 @@ const BusinessFormPage = () => {
             websiteUrl,
             tagId
         }
-        dispatch(createBusiness(newBusiness)).catch(async (res) => {
+        dispatch(createBusiness(newBusiness))
+            .then(()=> history.push('/'))
+            .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
           })
 
-        if (errors.length > 0) {
-            history.push('/')
-        }
     }
 
     return (

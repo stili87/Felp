@@ -51,7 +51,7 @@ const validateBusiness = [
 
   router.post('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => {
         const newBusiness = await Business.create(req.body)
-        return newBusiness
+        return res.json(newBusiness)
   }))
 
   module.exports = router;

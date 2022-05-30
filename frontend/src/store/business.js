@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf';
 const GET_ALL_BUSINESS = '/business/all'
 const ADD_BUSINESS = 'business/create'
+const DELETE_BUSINESS = '/business/delete'
 
 const actionAddBusiness = business => {
     return {
@@ -15,6 +16,12 @@ const actionAllBusinesses = businesses => {
         businesses
     }
 }
+const actionDeleteBusinesses = businessId => {
+    return {
+        type: DELETE_BUSINESS,
+        businessId
+    }
+}
 
 export const getAllBusinesses = () => async dispatch => {
     const response = await csrfFetch('/api/businesses')
@@ -27,13 +34,33 @@ export const createBusiness = business => async dispatch => {
         method: "POST",
         body: JSON.stringify(business)
     })
-
     const newBusiness = await response.json()
-
     if(newBusiness){
         dispatch(actionAddBusiness(newBusiness))
     }
     return newBusiness
+}
+
+export const editBusinessThunk = editBusiness => async dispatch => {
+    const response = await csrfFetch('/api/businesses', {
+        method: 'PUT',
+        body: JSON.stringify(editBusiness)
+    })
+    const editedBusiness = await response.json()
+    if(editBusiness){
+        dispatch(actionAddBusiness(editBusiness))
+    }
+    return editedBusiness
+}
+
+export const deleteBusinessThunk = deleteBusiness => async dispatch => {
+    const response = await csrfFetch('/api/businesses', {
+        method: "DELETE",
+        body: JSON.stringify(deleteBusiness)
+    })
+    const deleteResultId = await response.json()
+    dispatch(actionDeleteBusinesses(deleteResultId))
+    return deleteResultId
 }
 
 const businessReducer = (state={}, action) => {
@@ -46,6 +73,10 @@ const businessReducer = (state={}, action) => {
             let newAddState = {}
             newAddState = {...state, [action.business.id]: action.business}
             return newAddState
+        case DELETE_BUSINESS:
+                const newDelState = {...state}
+                delete newDelState[action.businessId]
+                return newDelState
         default:
             return state
         }

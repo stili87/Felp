@@ -54,4 +54,42 @@ const validateBusiness = [
         return res.json(newBusiness)
   }))
 
+  router.put('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => {
+    const { 
+      id,
+      userId,
+      title,
+      description,
+      address,
+      city,
+      state,
+      zipcode,
+      phone,
+      photoUrl,
+      websiteUrl,
+      tagId} = req.body
+
+    const editBusiness = await Business.findByPk(id)
+    const newBusiness = await editBusiness.update({ userId,
+      title,
+      description,
+      address,
+      city,
+      state,
+      zipcode,
+      phone,
+      photoUrl,
+      websiteUrl,
+      tagId})
+
+    return res.json(newBusiness)
+}))
+
+router.delete('/', requireAuth, asyncHandler(async (req, res) => {
+  console.log(req.body.id)
+  const deleteBusiness = await Business.findByPk(req.body.id)
+  await deleteBusiness.destroy()
+  return res.json(req.body.id)
+}))
+
   module.exports = router;

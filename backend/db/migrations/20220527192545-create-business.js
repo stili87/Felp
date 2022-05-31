@@ -22,6 +22,9 @@ module.exports = {
       photoUrl: {
         type: Sequelize.TEXT
       },
+      hours: {
+        type: Sequelize.STRING(50)
+      },
       title: {
         allowNull: false,
         type: Sequelize.STRING(100)

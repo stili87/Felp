@@ -49,6 +49,9 @@
     color: blue;
     cursor: pointer;
 }
+#signUp-text:hover {
+    text-decoration: underline;
+}
 
 #left-subheader {
     margin: 0;
@@ -90,8 +93,6 @@
 
 
 #splash-login-button {
-    margin:0;
-    padding: 0;
     width: 100%;
     background-color: #d32323;
     border: none;

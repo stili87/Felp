@@ -9,6 +9,7 @@ import {getAllBusinesses} from "./store/business"
 import BusinessDisplay from "./components/BusinessDisplay";
 import BusinessEditForm from "./components/BusinessEditForm";
 import SplashPage from "./components/SplashPage";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,8 +49,12 @@ function App() {
           <Route exact path='/business/edit/:businessId'>
             <BusinessEditForm />
           </Route>
+          <Route>
+            Page not Found
+          </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

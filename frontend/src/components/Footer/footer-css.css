@@ -1,0 +1,38 @@
+#footer-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    justify-content: space-around;
+    background-color: lightgrey;
+    height: 100px;
+    position:absolute;
+    bottom:0;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color: darkgrey;
+}
+
+.link-title {
+    color: black;
+    font-weight: 600;
+}

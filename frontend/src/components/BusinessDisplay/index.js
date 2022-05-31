@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import './business-display.css'
 import { deleteBusinessThunk } from "../../store/business";
+import BusinessCard from "../BusinessCard";
 
 const BusinessDisplay = () => {
-    const allBusinesses = Object.entries(useSelector(state => state.businesses))
+    const allBusinesses = Object.values(useSelector(state => state.businesses))
     const allTags = useSelector(state => state.tags)
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
@@ -18,31 +19,23 @@ const BusinessDisplay = () => {
     const handleDelete = business => {
         console.log('delete hit')
         dispatch(deleteBusinessThunk(business))
-            .then(()=> history.push('/'))
+            .then(() => history.push('/'))
+    }
 
 
-          }
 
 
-    
-
-    return(
-        <div>
-            {allBusinesses.map(business =>
-                <ul key={business[0]}>
-                   <li>{business[1].title}</li>
-                   <li>{business[1].address} {business[1].city} {business[1].state} {business[1].zipcode}</li>
-                   <li>{allTags[business[1].id]}</li>
-                   <li>{business[1].description}</li>
-                   <li><a href={business[1].websiteUrl} target="_blank">Website</a></li>
-                   <li>{business[1].phone}</li>
-                   <img className="business-img" alt='of business' src={business[1].photoUrl} />
-                   {sessionUser && sessionUser.id === business[1].userId && <button onClick={() => handleEdit(business[1])}>Edit Business</button>}
-                   {sessionUser && sessionUser.id === business[1].userId && <button onClick={() => handleDelete(business[1])}>Delete Business</button>}
-                   {sessionUser &&  <li>Review Button</li>}
-                </ul>
-                 
-                 )}
+    return (
+        <div id='main-page-full-container'>
+            <div id='main-page-image'>
+                <h1 id='main-page-header'>Find the Right Business for Whatever You Need</h1>
+            </div>
+            <h2 id='all-businesses-subhead'>All Businesses</h2>
+            <div id='business-container'>
+                {allBusinesses.map(business =>
+                    <BusinessCard key={business.id} business={business} />
+                )}
+            </div>
         </div>
     )
 }

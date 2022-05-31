@@ -86,7 +86,7 @@ const validateBusiness = [
 }))
 
 router.delete('/', requireAuth, asyncHandler(async (req, res) => {
-  console.log(req.body.id)
+
   const deleteBusiness = await Business.findByPk(req.body.id)
   await deleteBusiness.destroy()
   return res.json(req.body.id)

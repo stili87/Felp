@@ -1,3 +1,46 @@
 .business-img {
-    max-height: 500px;
+    max-height: 300px;
+}
+
+#main-page-image {
+    background: url('https://images.unsplash.com/photo-1621465558419-1deb2e51b530?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1458&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+}
+
+#main-page-header {
+    color: white;
+    font-size: 50px;
+    font-weight: 900;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    position: relative;
+    top: 100px;
+}
+
+#main-page-full-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 200px;
+    
+}
+
+#all-businesses-subhead {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 40px;
+    color: #d32323;
+    font-weight: 700;
+}
+
+#business-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

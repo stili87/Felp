@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     lat: DataTypes.DECIMAL,
     lng: DataTypes.DECIMAL,
     phone: DataTypes.STRING,
-    tagId: DataTypes.INTEGER
+    tagId: DataTypes.INTEGER,
+    hours: DataTypes.STRING
   }, {});
   Business.associate = function(models) {
     Business.belongsTo(models.Tag, {foreignKey: 'tagId'})

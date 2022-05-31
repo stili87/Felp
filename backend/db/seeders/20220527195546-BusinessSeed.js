@@ -19,7 +19,8 @@ module.exports = {
      state: 'MO',
      zipcode: '63109',
      phone: '314-727-0200',
-     tagId: 1
+     tagId: 1,
+     hours: '8:00 AM - 10:00 PM '
    }], {});
   },
 

@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import './business-single.css'
 import { getAllTags } from '../../store/tag'
+import ReviewForm from '../ReviewForm'
 
 
 const BusinessSingle = () => {
@@ -12,6 +13,9 @@ const BusinessSingle = () => {
     let sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
     let thisTag;
+    const [displayReview, setDisplayReview] = useState(false)
+
+
     if(allTags && business){
         thisTag = allTags[business.tagId]
     }
@@ -23,6 +27,8 @@ const BusinessSingle = () => {
     const handleEdit = business => {
         history.push(`/business/edit/${business.id}`)
     }
+
+    
 
     useEffect(() => {
         dispatch(getAllTags())
@@ -42,8 +48,10 @@ const BusinessSingle = () => {
                     <h2 className='business-type'>{thisTag}</h2>
                     <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
                     {sessionUser.id === business.id && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
+                    {sessionUser.id &&  <button onClick={() => setDisplayReview(!displayReview)} className='edit-button'>Review Business</button>}
                 </div>
             </div>
+            {displayReview && <ReviewForm setDisplayReview={setDisplayReview} business={business} />}
             <div className='description-div'>
                 <p className='description-text'>Description</p>
                 <p>{business.description}</p>

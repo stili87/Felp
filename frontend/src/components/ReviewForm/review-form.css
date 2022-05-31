@@ -1,0 +1,49 @@
+.review-form-container {
+    align-self: center;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#rating-input {
+    width: 50px;
+    height: 30px;
+}
+
+.review-form > label {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#submit-comment-button {
+    margin-top: 25px;
+    width: 150px;
+    background-color: #d32323;
+    border: none;
+    height: 23px;
+    color: white;
+    font-size: 15px;
+    font-weight: 550;
+    border-radius: 4px;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+
+#submit-comment-button:hover {
+    background-color: lightcoral;
+}
+
+#comment-input {
+    width: 550px;
+    height: 250px;
+}

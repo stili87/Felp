@@ -26,6 +26,8 @@ const BusinessDisplay = () => {
 
 
     return (
+        <>
+        {allBusinesses &&
         <div id='main-page-full-container'>
             <div id='main-page-image'>
                 <h1 id='main-page-header'>Find the Right Business for Whatever You Need</h1>
@@ -37,6 +39,8 @@ const BusinessDisplay = () => {
                 )}
             </div>
         </div>
+        }
+        </>
     )
 }
 

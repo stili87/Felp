@@ -10,6 +10,7 @@ import BusinessDisplay from "./components/BusinessDisplay";
 import BusinessEditForm from "./components/BusinessEditForm";
 import SplashPage from "./components/SplashPage";
 import Footer from "./components/Footer";
+import BusinessSingle from "./components/BusinessSingle";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route exact path='/business/edit/:businessId'>
             <BusinessEditForm />
+          </Route>
+          <Route exact path='/business/:businessId'>
+            <BusinessSingle />
           </Route>
           <Route>
             Page not Found

@@ -1,8 +1,9 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { editBusinessThunk } from "../../store/business";
 import './business-edit.css'
+import { deleteBusinessThunk } from "../../store/business";
 
 const BusinessEditForm = () => {
     const allBusinesses = useSelector(state => state.businesses)
@@ -26,7 +27,11 @@ const BusinessEditForm = () => {
     const history = useHistory()
     const dispatch = useDispatch();
 
-    
+    useEffect(() => {
+        console.log(sessionUser, editBusiness)
+        if(!sessionUser || sessionUser.id !== editBusiness.userId) {
+            history.push('/')
+        }},[])
 
 
     const handleOnSubmit = async (e) => {
@@ -56,14 +61,23 @@ const BusinessEditForm = () => {
 
     }
 
+    const handleDelete = (e, business) => {
+        e.preventDefault()
+        dispatch(deleteBusinessThunk(editBusiness))
+            .then(() => history.push('/'))
+    }
+    // {sessionUser && sessionUser.id !== editBusiness.userId && <div>You are not authorized to edit this business</div>}
+    // {sessionUser && sessionUser.id === editBusiness.userId &&
+
     return (
-        <>
-            {sessionUser && sessionUser.id !== editBusiness.userId && <div>You are not authorized to edit this business</div>}
-            {sessionUser && sessionUser.id === editBusiness.userId &&
-            <form id='business-edit-form' onSubmit={e => handleOnSubmit(e)}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+        <div id='business-creation-container'>
+            <h1 id="business-creation-header">Edit {editBusiness.title}</h1>
+            <form id='business-form' onSubmit={e => handleOnSubmit(e)}>
+                {errors.length > 0 &&
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                }
                 <label>Business Name:</label>
                 <input
                     name='title'
@@ -138,15 +152,15 @@ const BusinessEditForm = () => {
                 />
                 <label>Business Type</label>
                 <select
-                value={tagId}
-                onChange={e=>setTagId(e.target.value)}
+                    value={tagId}
+                    onChange={e => setTagId(e.target.value)}
                 >
                     {tags && tags.map(tag => <option key={tag[0]} value={tag[0]}>{tag[1]}</option>)}
                 </select>
-                <button id="business-edit-form-submit" type="submit">Submit</button>
+                <button id="business-form-submit" type="submit">Submit</button>
+                <button id="business-form-submit" onClick={(e) => handleDelete(e, editBusiness)}>Delete Business</button>
             </form>
-    }
-        </>
+        </div>
     )
 
     }

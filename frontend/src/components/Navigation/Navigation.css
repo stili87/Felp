@@ -80,3 +80,6 @@
     overflow: hidden;
     outline: none;
 }
+#nav-link-logout:hover {
+    text-decoration: underline;
+}

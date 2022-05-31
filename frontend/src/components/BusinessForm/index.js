@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import './business-form.css'
@@ -23,6 +23,12 @@ const BusinessFormPage = () => {
     const history = useHistory()
     const dispatch = useDispatch();
 
+    useEffect(()=> {
+        console.log(sessionUser)
+        if(!sessionUser){
+            history.push('/')
+        }
+    },[])
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
@@ -42,20 +48,23 @@ const BusinessFormPage = () => {
             tagId
         }
         dispatch(createBusiness(newBusiness))
-            .then(()=> history.push('/'))
+            .then(() => history.push('/'))
             .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-          })
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
 
     }
 
     return (
-        <>
+        <div id='business-creation-container'>
+            <h1 id="business-creation-header">Create a New Business</h1>
             <form id='business-form' onSubmit={e => handleOnSubmit(e)}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+                {errors.length > 0 &&
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                }
                 <label>Business Name:</label>
                 <input
                     name='title'
@@ -130,14 +139,14 @@ const BusinessFormPage = () => {
                 />
                 <label>Business Type</label>
                 <select
-                value={tagId}
-                onChange={e=>setTagId(e.target.value)}
+                    value={tagId}
+                    onChange={e => setTagId(e.target.value)}
                 >
                     {tags && tags.map(tag => <option key={tag[0]} value={tag[0]}>{tag[1]}</option>)}
                 </select>
                 <button id="business-form-submit" type="submit">Submit</button>
             </form>
-        </>
+        </div>
     )
 }
 

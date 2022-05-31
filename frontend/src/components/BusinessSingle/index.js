@@ -9,11 +9,14 @@ const BusinessSingle = () => {
     const businessId = useParams().businessId
     const business = useSelector(state => state.businesses)[businessId]
     const allTags = useSelector(state => state.tags)
-    const sessionUser = useSelector(state => state.session.user);
+    let sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
     let thisTag;
     if(allTags && business){
         thisTag = allTags[business.tagId]
+    }
+    if(!sessionUser){
+        sessionUser = {id: 0}
     }
     const dispatch = useDispatch()
 

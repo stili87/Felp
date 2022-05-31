@@ -1,11 +1,55 @@
+#business-creation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
 #business-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 500px;
+    min-width: 500px;
+    margin-bottom: 100px;
     
 }
 
 #business-form-submit {
-    max-width: 100px;
+    align-self: center;
+    width: 50%;
+    background-color: #d32323;
+    border: none;
+    height: 23px;
+    color: white;
+    font-size: 15px;
+    font-weight: 550;
+    border-radius: 4px;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+
+#business-form-submit:hover {
+    background-color: lightcoral;
+}
+
+#business-creation-header {
+    margin-top: 75px;
+    margin-bottom: 50px;
+    font-weight: 600;
+    color: #d32323;
+    font-size: 40px;
+}
+
+#business-form > label {
+    
+}
+#business-form > ul {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    color:#d32323
 }

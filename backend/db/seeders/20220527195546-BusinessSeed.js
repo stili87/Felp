@@ -23,7 +23,7 @@ module.exports = {
      hours: '8:00 AM - 10:00 PM '
    },
    {
-    userId: 1,
+    userId: 2,
     websiteUrl: 'https://saltandsmokebbq.com/',
     photoUrl: 'https://saltandsmokebbq.com/wp-content/uploads/2020/01/untitled-6-2.jpg',
     title: 'Salt & Smoke', 

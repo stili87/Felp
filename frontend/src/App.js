@@ -45,7 +45,7 @@ function App() {
             <SplashPage />
           </Route>
           <Route exact path="/business/create">
-          {sessionUser && <BusinessFormPage />}
+          <BusinessFormPage />
           </Route>
           <Route exact path='/business/edit/:businessId'>
             <BusinessEditForm />

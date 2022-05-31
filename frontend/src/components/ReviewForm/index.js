@@ -18,7 +18,7 @@ const ReviewForm = ({ business, setDisplayReview }) => {
             businessId: business.id
         }
         console.log(newReview)
-        
+
         dispatch(createReview(newReview))
         setDisplayReview(false)
 
@@ -43,8 +43,10 @@ const ReviewForm = ({ business, setDisplayReview }) => {
                 <input onChange={e => handleSetRating(e)} id='rating-input' type='text' placeholder='1 to 5' value={rating}></input>
                 <label>Review</label>
                 <textarea onChange={e => setComment(e.target.value)} id='comment-input' type='text' placeholder='Your Review Here' value={comment}></textarea>
-                <button id='submit-comment-button' onClick={e => handleSubmit(e)}>Submit Review</button>
-                <button id='submit-comment-button' onClick={e => handleCancel(e)}>Cancel</button>
+                <div id='review-button-holder'>
+                    <button id='submit-comment-button' onClick={e => handleSubmit(e)}>Submit Review</button>
+                    <button id='submit-comment-button' onClick={e => handleCancel(e)}>Cancel</button>
+                </div>
             </form>
 
         </div>

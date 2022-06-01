@@ -7,7 +7,7 @@ const ReviewDisplay = ({ review, business }) => {
     const allUsers = useSelector(state => state.users)
     const reviewUser = allUsers[review.userId]
     const currentUser = useSelector(state => state.session.user)
-    const currentUserId = currentUser.id
+    
     const [editFormOpen, setEditFormOpen] = useState(false)
 
     return (
@@ -19,7 +19,7 @@ const ReviewDisplay = ({ review, business }) => {
                     <p className='review-text'>Review: {review.comment}</p>
                 </>
             }
-            {currentUserId && reviewUser && currentUserId === reviewUser.id && <button className='edit-open-button' onClick={()=>setEditFormOpen(!editFormOpen)}>Edit Review</button>}
+            {currentUser && reviewUser && currentUser.id === reviewUser.id && <button className='edit-open-button' onClick={()=>setEditFormOpen(!editFormOpen)}>Edit Review</button>}
             {editFormOpen && <ReviewEditForm business={business} review={review} setEditFormOpen={setEditFormOpen} ></ReviewEditForm>} 
 
         </div>

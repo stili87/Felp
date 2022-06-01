@@ -1,29 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import './business-display.css'
-import { deleteBusinessThunk } from "../../store/business";
 import BusinessCard from "../BusinessCard";
+import { useSelector } from "react-redux";
 
 const BusinessDisplay = () => {
     const allBusinesses = Object.values(useSelector(state => state.businesses))
-    const allTags = useSelector(state => state.tags)
-    const sessionUser = useSelector(state => state.session.user);
-    const history = useHistory()
-    const dispatch = useDispatch()
-
-    const handleEdit = business => {
-        history.push(`/business/edit/${business.id}`)
-    }
-
-    const handleDelete = business => {
-        console.log('delete hit')
-        dispatch(deleteBusinessThunk(business))
-            .then(() => history.push('/'))
-    }
-
-
-
 
     return (
         <>

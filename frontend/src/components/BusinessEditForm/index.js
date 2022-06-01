@@ -14,14 +14,15 @@ const BusinessEditForm = () => {
     const tags = Object.entries(stateTags)
     const [tagId, setTagId] = useState(editBusiness.tagId || '')
     const [title, setTitle] = useState(editBusiness.title || '')
-    const [description, setDescription] = useState(editBusiness.description|| '')
-    const [address, setAddress] = useState(editBusiness.address|| '')
-    const [city, setCity] = useState(editBusiness.city|| '')
-    const [state, setState] = useState(editBusiness.state|| '')
-    const [zipcode, setZipcode] = useState(editBusiness.zipcode|| '')
-    const [phone, setPhone] = useState(editBusiness.phone|| '')
-    const [photoUrl, setPhotoUrl] = useState(editBusiness.photoUrl|| '')
-    const [websiteUrl, setWebsiteUrl] = useState(editBusiness.websiteUrl|| '')
+    const [description, setDescription] = useState(editBusiness.description || '')
+    const [address, setAddress] = useState(editBusiness.address || '')
+    const [city, setCity] = useState(editBusiness.city || '')
+    const [state, setState] = useState(editBusiness.state || '')
+    const [zipcode, setZipcode] = useState(editBusiness.zipcode || '')
+    const [phone, setPhone] = useState(editBusiness.phone || '')
+    const [photoUrl, setPhotoUrl] = useState(editBusiness.photoUrl || '')
+    const [websiteUrl, setWebsiteUrl] = useState(editBusiness.websiteUrl || '')
+    const [hours, setHours] = useState(editBusiness.hours || '')
 
     const [errors, setErrors] = useState([]);
     const history = useHistory()
@@ -38,6 +39,7 @@ const BusinessEditForm = () => {
 
         const userId = sessionUser.id
         const editingBusiness = {
+            hours,
             id: editBusiness.id,
             userId,
             title,
@@ -65,8 +67,6 @@ const BusinessEditForm = () => {
         dispatch(deleteBusinessThunk(editBusiness))
             .then(() => history.push('/'))
     }
-    // {sessionUser && sessionUser.id !== editBusiness.userId && <div>You are not authorized to edit this business</div>}
-    // {sessionUser && sessionUser.id === editBusiness.userId &&
 
     return (
         <div id='business-creation-container'>
@@ -92,6 +92,14 @@ const BusinessEditForm = () => {
                     onChange={e => setDescription(e.target.value)}
                     type="text"
                     placeholder="Business Description Here"
+                />
+                <label>Hours:</label>
+                <input
+                    name='hours'
+                    value={hours}
+                    onChange={e => setHours(e.target.value)}
+                    type="text"
+                    placeholder="e.g. 8:00am - 10:00pm"
                 />
                 <label>Address</label>
                 <input

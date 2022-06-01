@@ -5,7 +5,6 @@ const LOAD_REVIEW = 'review/load'
 const DELETE_REVIEW = 'review/delete'
 
 const addReview = newReview => {
-    console.log(newReview)
     return {
         type: ADD_REVIEW,
         newReview

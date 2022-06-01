@@ -20,21 +20,22 @@ const BusinessFormPage = () => {
     const [photoUrl, setPhotoUrl] = useState('')
     const [websiteUrl, setWebsiteUrl] = useState('')
     const [errors, setErrors] = useState([]);
+    const [hours, setHours] = useState('')
     const history = useHistory()
     const dispatch = useDispatch();
 
     useEffect(()=> {
-        console.log(sessionUser)
         if(!sessionUser){
             history.push('/')
         }
-    },[])
+    },[history, sessionUser])
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
 
         const userId = sessionUser.id
         const newBusiness = {
+            hours,
             userId,
             title,
             description,
@@ -80,6 +81,14 @@ const BusinessFormPage = () => {
                     onChange={e => setDescription(e.target.value)}
                     type="text"
                     placeholder="Business Description Here"
+                />
+                <label>Hours:</label>
+                <input
+                    name='hours'
+                    value={hours}
+                    onChange={e => setHours(e.target.value)}
+                    type="text"
+                    placeholder="e.g. 8:00am - 10:00pm"
                 />
                 <label>Address</label>
                 <input

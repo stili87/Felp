@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { editReview } from '../../store/review';
+import { editReview, deleteReview } from '../../store/review';
 import './review-form.css'
 
 const ReviewForm = ({ business, review, setEditFormOpen }) => {
@@ -10,7 +9,6 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
     let sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([]);
-    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -21,17 +19,23 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
             rating: Number(rating),
             businessId: business.id
         }
-        
         dispatch(editReview(newReview))
             .then(() => {
                 setEditFormOpen(false)
-                // history.push(`/${business.id}`)
             })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
+    }
 
+    const handleDelete = e => {
+        e.preventDefault()
+
+        dispatch(deleteReview(review.id))
+            .then(() => {
+                setEditFormOpen(false)
+            })
     }
 
     const handleCancel = e => {
@@ -47,7 +51,7 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
 
     return (
         <div className='review-form-container'>
-            <p className='review-header'>Review {business.title} Here</p>
+            <p className='review-header'>Edit Your Review of {business.title}</p>
             <form className='review-form'>
                 {errors.length > 0 &&
                     <ul>
@@ -60,6 +64,7 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
                 <textarea onChange={e => setComment(e.target.value)} id='comment-input' type='text' placeholder='Your Review Here' value={comment}></textarea>
                 <div id='review-button-holder'>
                     <button id='submit-comment-button' onClick={e => handleSubmit(e)}>Submit Edited Review</button>
+                    <button id='submit-comment-button' onClick={e => handleDelete(e)}>Delete Review</button>
                     <button id='submit-comment-button' onClick={e => handleCancel(e)}>Cancel</button>
                 </div>
             </form>

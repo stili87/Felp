@@ -34,8 +34,14 @@ router.put('/', requireAuth, validateReview, asyncHandler(async (req, res) => {
     const {reviewId, comment, rating} = req.body
     const updatingReview = await Review.findByPk(reviewId)
     const updatedReview = await updatingReview.update({comment, rating})
-    console.log(updatedReview)
     res.json(updatedReview)
+}))
+
+router.delete('/', requireAuth, asyncHandler(async (req, res) => {
+    const {reviewId} = req.body
+    const deleteReview = await Review.findByPk(reviewId)
+    await deleteReview.destroy()
+    res.json(reviewId)
 }))
 
 module.exports = router;

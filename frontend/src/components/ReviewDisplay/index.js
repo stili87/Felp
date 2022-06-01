@@ -19,7 +19,7 @@ const ReviewDisplay = ({ review, business }) => {
                     <p className='review-text'>Review: {review.comment}</p>
                 </>
             }
-            {currentUserId && reviewUser && currentUserId === reviewUser.id && <button onClick={()=>setEditFormOpen(!editFormOpen)}>Edit Review</button>}
+            {currentUserId && reviewUser && currentUserId === reviewUser.id && <button className='edit-open-button' onClick={()=>setEditFormOpen(!editFormOpen)}>Edit Review</button>}
             {editFormOpen && <ReviewEditForm business={business} review={review} setEditFormOpen={setEditFormOpen} ></ReviewEditForm>} 
 
         </div>

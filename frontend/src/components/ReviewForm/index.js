@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { createReview } from '../../store/review';
 import './review-form.css'
 
@@ -10,7 +9,6 @@ const ReviewForm = ({ business, setDisplayReview }) => {
     let sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([]);
-    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault()

@@ -8,3 +8,24 @@
     padding: 20px;
     border-radius: 20px;
 }
+
+.edit-open-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    margin-top: 25px;
+    width: 150px;
+    background-color: #d32323;
+    border: none;
+    height: 23px;
+    color: white;
+    font-size: 15px;
+    font-weight: 550;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 1s;
+    justify-self: center;
+    align-self: center;
+}

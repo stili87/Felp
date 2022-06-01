@@ -30,7 +30,7 @@ const BusinessEditForm = () => {
     useEffect(() => {
         if(!sessionUser || sessionUser.id !== editBusiness.userId) {
             history.push('/')
-        }},[])
+        }},[editBusiness.userId, history, sessionUser])
 
 
     const handleOnSubmit = async (e) => {

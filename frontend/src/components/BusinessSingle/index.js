@@ -22,7 +22,7 @@ const BusinessSingle = () => {
 
     useEffect(()=> {
         dispatch(getBusinessReviews(businessId))
-    },[dispatch])
+    },[dispatch, businessId])
 
     if(allTags && business){
         thisTag = allTags[business.tagId]

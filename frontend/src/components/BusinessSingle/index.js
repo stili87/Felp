@@ -20,7 +20,7 @@ const BusinessSingle = () => {
     let thisTag;
     const [displayReview, setDisplayReview] = useState(false)
     const dispatch = useDispatch()
-
+   
     useEffect(()=> {
         dispatch(getBusinessReviews(businessId))
     },[dispatch, businessId])
@@ -55,7 +55,7 @@ const BusinessSingle = () => {
                     <h1 className='business-header'>{business.title}</h1>
                     <h2 className='business-type'>{thisTag}</h2>
                     <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
-                    {sessionUser.id === business.id && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
+                    {sessionUser.id === business.userId && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
                     {sessionUser.id &&  <button onClick={() => setDisplayReview(!displayReview)} className='edit-button'>Review Business</button>}
                     <Likes businessId={business.id} />
                 </div>

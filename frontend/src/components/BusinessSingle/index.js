@@ -4,6 +4,9 @@ import { useHistory, useParams } from 'react-router-dom'
 import './business-single.css'
 import { getAllTags } from '../../store/tag'
 import ReviewForm from '../ReviewForm'
+import { getBusinessReviews } from '../../store/review'
+import ReviewDisplay from '../ReviewDisplay'
+
 
 
 const BusinessSingle = () => {
@@ -11,10 +14,15 @@ const BusinessSingle = () => {
     const business = useSelector(state => state.businesses)[businessId]
     const allTags = useSelector(state => state.tags)
     let sessionUser = useSelector(state => state.session.user);
+    const reviews = Object.values(useSelector(state => state.reviews))
     const history = useHistory()
     let thisTag;
     const [displayReview, setDisplayReview] = useState(false)
+    const dispatch = useDispatch()
 
+    useEffect(()=> {
+        dispatch(getBusinessReviews(businessId))
+    },[dispatch])
 
     if(allTags && business){
         thisTag = allTags[business.tagId]
@@ -22,7 +30,6 @@ const BusinessSingle = () => {
     if(!sessionUser){
         sessionUser = {id: 0}
     }
-    const dispatch = useDispatch()
 
     const handleEdit = business => {
         history.push(`/business/edit/${business.id}`)
@@ -51,7 +58,7 @@ const BusinessSingle = () => {
                     {sessionUser.id &&  <button onClick={() => setDisplayReview(!displayReview)} className='edit-button'>Review Business</button>}
                 </div>
             </div>
-            {displayReview && <ReviewForm setDisplayReview={setDisplayReview} business={business} />}
+            {reviews && displayReview && <ReviewForm setDisplayReview={setDisplayReview} business={business} />}
             <div className='description-div'>
                 <p className='description-text'>Description</p>
                 <p>{business.description}</p>
@@ -72,6 +79,10 @@ const BusinessSingle = () => {
             </div>
             <div className='reivew-div'>
                 <p id='reviews-header'>Reviews</p>
+                {reviews.length < 1 && <p>No Reviews Yet</p>}
+                {reviews.length > 0 &&
+                    reviews.map(review => <ReviewDisplay key={review.id} business={business} review={review}/>)
+                }
             </div>
         </div>
     }

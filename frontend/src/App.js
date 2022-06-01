@@ -11,6 +11,7 @@ import BusinessEditForm from "./components/BusinessEditForm";
 import SplashPage from "./components/SplashPage";
 import Footer from "./components/Footer";
 import BusinessSingle from "./components/BusinessSingle";
+import { getAllUsers } from "./store/users";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,12 @@ function App() {
   useEffect(() => {
     dispatch(getAllBusinesses())
   },[dispatch])
+
+  useEffect(() => {
+    dispatch(getAllUsers())
+  },[dispatch])
+
+
 
   return (
     <>

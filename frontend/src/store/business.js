@@ -1,6 +1,6 @@
 import { csrfFetch } from './csrf';
 const GET_ALL_BUSINESS = '/business/all'
-const ADD_BUSINESS = 'business/create'
+const ADD_BUSINESS = '/business/create'
 const DELETE_BUSINESS = '/business/delete'
 
 const actionAddBusiness = business => {

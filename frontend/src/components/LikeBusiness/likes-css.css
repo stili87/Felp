@@ -1,0 +1,51 @@
+.likes-div {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    gap: 20px
+}
+
+.likeCounter {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.button-unliked {
+    
+    width: 165px;
+    background-color: #d32323;
+    border: none;
+    height: 30px;
+    color: white;
+    font-size: 15px;
+    font-weight: 550;
+    border-radius: 4px;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+
+.button-unliked:hover {
+    background-color: lightcoral;
+}
+
+.button-liked {
+    margin-bottom: 25px;
+    width: 150px;
+    background-color: white;
+    border: none;
+    height: 23px;
+    color: white;
+    font-size: 15px;
+    font-weight: 550;
+    border-radius: 4px;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+
+.button-liked:hover {
+    background-color: lightcoral;
+}

@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Business.belongsTo(models.Tag, {foreignKey: 'tagId'})
     Business.belongsTo(models.User, {foreignKey: 'userId'})
     Business.hasMany(models.Review, {foreignKey: 'userId', onDelete: 'cascade', hooks: 'true'})
+    Business.hasMany(models.Like, {foreignKey:'businessId', onDelete: 'cascade', hooks: 'true'})
   };
   return Business;
 };

@@ -5,13 +5,15 @@ import sessionReducer from './session';
 import tagReducer from './tag';
 import reviewReducer from './review';
 import usersReducer from './users';
+import likesReducer from './like'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   tags: tagReducer,
   businesses: businessReducer,
   reviews: reviewReducer,
-  users: usersReducer
+  users: usersReducer,
+  likes: likesReducer
 });
 
 let enhancer;

@@ -6,6 +6,7 @@ import { getAllTags } from '../../store/tag'
 import ReviewForm from '../ReviewForm'
 import { getBusinessReviews } from '../../store/review'
 import ReviewDisplay from '../ReviewDisplay'
+import Likes from '../LikeBusiness'
 
 
 
@@ -56,6 +57,7 @@ const BusinessSingle = () => {
                     <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
                     {sessionUser.id === business.id && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
                     {sessionUser.id &&  <button onClick={() => setDisplayReview(!displayReview)} className='edit-button'>Review Business</button>}
+                    <Likes businessId={business.id} />
                 </div>
             </div>
             {reviews && displayReview && <ReviewForm setDisplayReview={setDisplayReview} business={business} />}

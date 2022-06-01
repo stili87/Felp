@@ -19,9 +19,9 @@ const validateReview = [
 ];
 
 router.post('/', validateReview, requireAuth, asyncHandler(async (req,res)=> {
-    console.log(req.body)
-    const newReview = await Review.create(req.body)
-    return res.json(req.body)
+    const buildReview = await Review.build(req.body)
+    const newReview = await buildReview.save()
+    res.json(newReview)
 }))
 
 module.exports = router;

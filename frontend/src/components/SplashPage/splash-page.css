@@ -1,5 +1,5 @@
 #splash-main {
-    
+
     border-radius: 25px;
     min-width: 1000px;
     max-width: 1000px;
@@ -7,7 +7,9 @@
     max-height: 700px;
     position: absolute;
     top: 22%;
-    left: 22%;
+    left: 33%;
+    align-self: center;
+    justify-content: center;
     display: flex;
     justify-content: center;
     margin: 0;

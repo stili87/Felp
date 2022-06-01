@@ -28,7 +28,6 @@ const BusinessEditForm = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(sessionUser, editBusiness)
         if(!sessionUser || sessionUser.id !== editBusiness.userId) {
             history.push('/')
         }},[])

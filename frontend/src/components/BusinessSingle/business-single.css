@@ -25,25 +25,34 @@
     font-weight: 600;
     font-size: 56px;
     padding-left: 100px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .business-type {
     color: white;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 27px;
     padding-left: 100px;
     margin-top: 7px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .hours-text {
-    color: green;
+    color: lightgreen;
+    font-size: 25px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .business-hours {
     color: white;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 25px;
     padding-left: 100px;
     margin-top: 7px;
     margin-bottom: 35px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .edit-button {
     margin-left: 100px;

@@ -11,22 +11,23 @@ const addReview = newReview => {
 
 export const createReview = review => async dispatch => {
 
-    const response = csrfFetch('/api/reviews', {
+    const response = await csrfFetch('/api/reviews', {
         method: 'POST',
         body: JSON.stringify(review)
     })
 
-    if (response.ok) {
+    if(response.ok){
         const newReview = await response.json()
         dispatch(addReview(newReview))
         return newReview
     }
+    
+    return response
 }
 
 const reviewReducer = (state={}, action) => {
     switch (action.type){
         case ADD_REVIEW:
-            console.log('hit reducer')
             let newState = {...state}
             newState[action.newReview.id] = action.newReview
             return newState

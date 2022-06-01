@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createReview } from '../../store/review';
 import './review-form.css'
 
@@ -8,6 +9,8 @@ const ReviewForm = ({ business, setDisplayReview }) => {
     const [comment, setComment] = useState('')
     let sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
+    const [errors, setErrors] = useState([]);
+    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,10 +20,15 @@ const ReviewForm = ({ business, setDisplayReview }) => {
             rating: Number(rating),
             businessId: business.id
         }
-        console.log(newReview)
-
+        
         dispatch(createReview(newReview))
-        setDisplayReview(false)
+            .then(() => {
+                setDisplayReview(false)
+            })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
 
     }
 
@@ -39,6 +47,11 @@ const ReviewForm = ({ business, setDisplayReview }) => {
         <div className='review-form-container'>
             <p className='review-header'>Review {business.title} Here</p>
             <form className='review-form'>
+                {errors.length > 0 &&
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                }
                 <label>Rating: 1 to 5</label>
                 <input onChange={e => handleSetRating(e)} id='rating-input' type='text' placeholder='1 to 5' value={rating}></input>
                 <label>Review</label>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './review-display.css'
 import ReviewEditForm from '../ReviewEditForm/index'
@@ -7,8 +7,9 @@ const ReviewDisplay = ({ review, business }) => {
     const allUsers = useSelector(state => state.users)
     const reviewUser = allUsers[review.userId]
     const currentUser = useSelector(state => state.session.user)
-    
     const [editFormOpen, setEditFormOpen] = useState(false)
+
+    useEffect(()=> {},[review])
 
     return (
         <div className='review-container'>

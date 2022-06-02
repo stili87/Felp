@@ -14,8 +14,7 @@
 
   Entry Page
   
-  ![Individual Business](https://user-images.githubusercontent.com/59978288/171731756-55472b80-acbd-4423-a43a-c15cba2f4f05.png)
-
+![Entry Page](https://user-images.githubusercontent.com/59978288/171735651-9dd7cd28-9e5f-42ca-a27b-13799c9ff659.png)
    
   Individual Business
 

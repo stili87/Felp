@@ -4,19 +4,19 @@
 
 <p align=center>Felp is a Yelp clone that includes the functionality to create, rate, like, and review businesses.</p>
 
-<p align=center><a href='https://felp-aa.herokuapp.com/'>Felp Live Link</p>
-
-  ![Splash Page](https://user-images.githubusercontent.com/59978288/171730648-db778494-cc90-4ee0-9dfd-a6428961ffd6.png)
+<p align=center><a href='https://felp-aa.herokuapp.com/'>Felp Live Link</a></p>
 
   Splash Page
-  
-  ![Splash Page](https://user-images.githubusercontent.com/59978288/171731267-1c61bbbf-4295-449f-a0f2-b91574387c0f.png)
+ ![Splash Page](https://user-images.githubusercontent.com/59978288/171735795-30ca7917-e0f4-4822-a464-8da27523f99f.png)
+
 
   Entry Page
   
-![Entry Page](https://user-images.githubusercontent.com/59978288/171735651-9dd7cd28-9e5f-42ca-a27b-13799c9ff659.png)
+![Entry Page](https://user-images.githubusercontent.com/59978288/171735966-1b26f1d0-a64a-4d60-ae00-6ceb699849ff.png)
+
    
   Individual Business
+![Individual Business](https://user-images.githubusercontent.com/59978288/171735982-d51d88eb-426c-4ac4-81d0-c0002246724f.png)
 
   
   ## About

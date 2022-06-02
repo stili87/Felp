@@ -45,14 +45,20 @@ const SplashPage = () => {
 
 
     return (
+        <>
+        <div className="splash-header-container">
+            <p className="splash-header">Welcome to Felp</p>
+            <p className="splash-sub-header">An app for finding the proper business for your needs</p>
+        </div>
         <div id='splash-main'>
             <div id='splash-left'>
                 <p id='left-header'>Log in to Felp</p>
                 <p id='left-subheader'>New to Felp? <span onClick={() =>{ 
                     setSignUp(true)}} id='signUp-text'>Sign up</span></p>
                 <p id='left-agree-terms'>By logging in, you agree to Felp's Terms of Service and Privacy Policy.</p>
+                <div className="forms-holder">
                 {!signUp &&
-                    <>
+                <>
                     <form id='splash-signup-form' onSubmit={(e) => handleSubmit(e)}>
                         {errors.map((error, idx) => (
                             <li class='error-li' key={idx}>{error}</li>
@@ -73,11 +79,13 @@ const SplashPage = () => {
                             }}>Cancel Sign Up</button>
                     </>
                 }
+                </div>
             </div>
             <div id='splash-right'>
                 <img alt='splash page' src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png' />
             </div>
         </div>
+        </>
     )
 }
 

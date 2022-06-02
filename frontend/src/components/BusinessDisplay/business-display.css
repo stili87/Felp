@@ -10,6 +10,7 @@
     height: 550px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #main-page-header {
@@ -18,8 +19,7 @@
     font-weight: 900;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
-    position: relative;
-    top: 100px;
+    
 }
 
 #main-page-full-container {

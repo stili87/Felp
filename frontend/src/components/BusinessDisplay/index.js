@@ -11,7 +11,7 @@ const BusinessDisplay = () => {
         {allBusinesses &&
         <div id='main-page-full-container'>
             <div id='main-page-image'>
-                <h1 id='main-page-header'>Find the Right Business for Whatever You Need</h1>
+                <h1 id='main-page-header'>Find the Right Business for All Your Needs</h1>
             </div>
             <h2 id='all-businesses-subhead'>All Businesses</h2>
             <div id='business-container'>

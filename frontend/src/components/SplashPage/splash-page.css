@@ -8,6 +8,10 @@
     display: flex;
     gap: 100px;
     margin-bottom: 80px;
+    justify-self: center;
+    position: relative;
+    left: 25%;
+    margin-bottom: 120px;
 }
 
 .splash-header-container {

@@ -5,18 +5,19 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import BusinessFormPage from "./components/BusinessForm/index"
 import { getAllTags } from "./store/tag";
-import {getAllBusinesses} from "./store/business"
+import { getAllBusinesses } from "./store/business"
 import BusinessDisplay from "./components/BusinessDisplay";
 import BusinessEditForm from "./components/BusinessEditForm";
 import SplashPage from "./components/SplashPage";
 import Footer from "./components/Footer";
 import BusinessSingle from "./components/BusinessSingle";
 import { getAllUsers } from "./store/users";
+import About from "./components/About";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -24,15 +25,15 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllTags())
-  },[dispatch])
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getAllBusinesses())
-  },[dispatch])
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getAllUsers())
-  },[dispatch])
+  }, [dispatch])
 
 
 
@@ -41,7 +42,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route  exact path='/'>
+          <Route exact path='/'>
             <SplashPage />
           </Route>
           <Route exact path='/listings'>
@@ -51,13 +52,16 @@ function App() {
             <SplashPage />
           </Route>
           <Route exact path="/business/create">
-          <BusinessFormPage />
+            <BusinessFormPage />
           </Route>
           <Route exact path='/business/edit/:businessId'>
             <BusinessEditForm />
           </Route>
           <Route exact path='/business/:businessId'>
             <BusinessSingle />
+          </Route>
+          <Route exact path='/about'>
+            <About />
           </Route>
           <Route>
             Page not Found

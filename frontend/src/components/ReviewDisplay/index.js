@@ -17,7 +17,8 @@ const ReviewDisplay = ({ review, business }) => {
             {review &&
                 <>
                     <p className='review-rating'>Rating: {review.rating}/5</p>
-                    <p className='review-text'>Review: {review.comment}</p>
+                    <p className='review-text-header'>Review:</p>
+                    <p className='review-text'>{review.comment}</p>
                 </>
             }
             {currentUser && reviewUser && currentUser.id === reviewUser.id && <button className='edit-open-button' onClick={()=>setEditFormOpen(!editFormOpen)}>Edit Review</button>}

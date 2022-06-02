@@ -35,7 +35,6 @@ export const deleteLikeThunk = like => async dispatch =>  {
 }
 
 export const addLikeThunk = like => async dispatch =>  {
-    console.log(like)
     const response = await csrfFetch('/api/likes', {
         method: "POST",
         body: JSON.stringify(like)

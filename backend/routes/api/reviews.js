@@ -13,6 +13,8 @@ const validateReview = [
         .isIn(['1','2','3','4','5'])
         .withMessage('Rating must be between 1 and 5.'),
     check('comment')
+        .isLength({ max: 10000 })
+        .withMessage('Business Description must not be more than 10,000 characters.')
         .exists({checkFalsy: true})
         .withMessage('Please provide a review'),
     handleValidationErrors

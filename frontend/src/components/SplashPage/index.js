@@ -48,7 +48,8 @@ const SplashPage = () => {
         <div id='splash-main'>
             <div id='splash-left'>
                 <p id='left-header'>Log in to Felp</p>
-                <p id='left-subheader'>New to Felp? <span onClick={() => setSignUp(true)} id='signUp-text'>Sign up</span></p>
+                <p id='left-subheader'>New to Felp? <span onClick={() =>{ 
+                    setSignUp(true)}} id='signUp-text'>Sign up</span></p>
                 <p id='left-agree-terms'>By logging in, you agree to Felp's Terms of Service and Privacy Policy.</p>
                 {!signUp &&
                     <>
@@ -67,7 +68,9 @@ const SplashPage = () => {
                 {signUp &&
                     <>
                         <SignupFormPage />
-                        <button id="sign-up-cancel" onClick={() => setSignUp(false)}>Cancel Sign Up</button>
+                        <button id="sign-up-cancel" onClick={() => {
+                            setSignUp(false)
+                            }}>Cancel Sign Up</button>
                     </>
                 }
             </div>

@@ -1,7 +1,7 @@
 .business-card-wrapper {
     border: 1px solid grey;
     border-radius: 25px;
-    height: 300px;
+    height: 360px;
     width: 250px;
     box-shadow: 1px 1px 1px grey;
     display: flex;
@@ -9,7 +9,6 @@
     align-items: center;
     margin-bottom: 35px;
     transition: all 0.3s ease-out;
-    
 }
 
 .business-card-wrapper:hover {
@@ -21,18 +20,29 @@
     border-radius: 25px 25px 1px 1px;
     min-width: 250px;
     max-width: 250px;
+    max-height: 150px;
+    min-height: 150px;
     cursor: pointer;
 }
 
 .business-card-name {
+    inline-size: 80%;
+    overflow-wrap: break-word;
     margin-top: 10px;
     font-size: 25px;
     color: #d32323;
     font-weight: 600;
     cursor: pointer;
     margin-bottom: 5px;
+    overflow: hidden;
+    text-align: center;
+   
 }
 .business-card-descrip {
+    text-align: center;
+    inline-size: 80%;
+    overflow-wrap: break-word;
+    overflow: hidden;
     font-size: 17px;
     font-weight: 300;
     margin-bottom: 7px;

@@ -41,16 +41,16 @@ body {
     line-height: 1;
 }
 
-/* #root {
+#root {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     min-height: 100vh;
     min-width: 100vw;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1;
-} */
+}
 
 
 ol, ul {

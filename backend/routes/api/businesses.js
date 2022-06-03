@@ -32,25 +32,30 @@ const validateBusiness = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide the state of your business.')
     .isLength({ max: 2 })
-    .withMessage('City must not be more than 2 characters.'),
+    .withMessage('State must not be more than 2 characters.'),
   check('zipcode')
     .exists({ checkFalsy: true })
     .withMessage('Please provide the zipcode of your business.')
-    .isLength({ max: 5 })
-    .withMessage('Zipcode must not be more than 5 characters.'),
+    .matches(/^[0-9]{5}(?:-[0-9]{4})?$/)
+    .withMessage('Zipcode must be in format 12345.'),
   check('phone')
     .exists({ checkFalsy: true })
     .withMessage('Please provide the phone number of your business.')
-    .isLength({ max: 15 })
-    .withMessage('Phone must not be more than 15 characters.'),
+    .matches(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
+    .withMessage('Phone must be in format 555-555-5555.'),
   check('tagId')
     .exists({ checkFalsy: true })
     .withMessage('Please pick a tag.'),
   check('hours')
     .exists({ checkFalsy: true })
     .withMessage('Please submit hours.')
-    .isLength({ max: 17 })
-    .withMessage('Hours must not be more than 17 characters.'),
+    .matches(/^((([0]?[1-9]|1[0-2])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?( )?(AM|am|aM|Am|PM|pm|pM|Pm))|(([0]?[0-9]|1[0-9]|2[0-3])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?)) - ((([0]?[1-9]|1[0-2])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?( )?(AM|am|aM|Am|PM|pm|pM|Pm))|(([0]?[0-9]|1[0-9]|2[0-3])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?))$/)
+    .withMessage('Hours must be in the format 12:00am - 12:00pm'),
+  check('websiteUrl')
+    .exists({checkFalsy: true})
+    .withMessage("Please enter your business's website.")
+    .isURL()
+    .withMessage('Your website must be a URL.'),
   handleValidationErrors
 ];
 

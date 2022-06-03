@@ -4,7 +4,8 @@ const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Business } = require('../../db/models')
+const { Business } = require('../../db/models');
+const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
 
 const validateBusiness = [
   check('title')
@@ -56,16 +57,46 @@ const validateBusiness = [
 router.get('/', asyncHandler(async (req, res) => {
   const allBussinesses = await Business.findAll()
   res.send(allBussinesses)
-
 }))
 
-router.post('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => {
-  const newBusiness = await Business.create(req.body)
+router.post('/',  singleMulterUpload('image'), validateBusiness, requireAuth, asyncHandler(async (req, res) => {
+  const {hours,
+    userId,
+    title,
+    description,
+    address,
+    city,
+    state,
+    zipcode,
+    phone,
+    websiteUrl,
+    tagId, 
+    } = req.body
+
+
+    const photoUrl = await singlePublicFileUpload(req.file);
+
+  const newBusiness = await Business.create({
+    hours,
+    userId,
+    title,
+    description,
+    address,
+    city,
+    state,
+    zipcode,
+    phone,
+    websiteUrl,
+    tagId, 
+    photoUrl})
+
   return res.json(newBusiness)
 }))
 
-router.put('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => {
+router.put('/', singleMulterUpload('image'), validateBusiness, requireAuth, asyncHandler(async (req, res) => {
+  
   const {
+    hours,
     id,
     userId,
     title,
@@ -75,12 +106,32 @@ router.put('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => 
     state,
     zipcode,
     phone,
-    photoUrl,
     websiteUrl,
     tagId } = req.body
+    let photoUrl;
+    let newBusiness
+    
+    const editBusiness = await Business.findByPk(id)
 
-  const editBusiness = await Business.findByPk(id)
-  const newBusiness = await editBusiness.update({
+if(req.file){
+    photoUrl = await singlePublicFileUpload(req.file);
+    newBusiness = await editBusiness.update({
+      hours,
+      userId,
+      title,
+      description,
+      address,
+      city,
+      state,
+      zipcode,
+      phone,
+      photoUrl,
+      websiteUrl,
+      tagId
+    })
+}else {
+  newBusiness = await editBusiness.update({
+    hours,
     userId,
     title,
     description,
@@ -89,10 +140,10 @@ router.put('/', validateBusiness, requireAuth, asyncHandler(async (req, res) => 
     state,
     zipcode,
     phone,
-    photoUrl,
     websiteUrl,
     tagId
-  })
+})
+}
 
   return res.json(newBusiness)
 }))

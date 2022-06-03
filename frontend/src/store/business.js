@@ -30,10 +30,43 @@ export const getAllBusinesses = () => async dispatch => {
 }
 
 export const createBusiness = business => async dispatch => {
+const {
+    hours,
+    userId,
+    title,
+    description,
+    address,
+    city,
+    state,
+    zipcode,
+    phone,
+    websiteUrl,
+    tagId, 
+    image } = business
+
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("hours", hours);
+    formData.append("zipcode", zipcode);
+    formData.append("phone", phone);
+    formData.append("websiteUrl", websiteUrl);
+    formData.append("tagId", tagId);
+    
+    if(image) formData.append("image", image);
+    
+
+
     const response = await csrfFetch('/api/businesses', {
         method: "POST",
-        body: JSON.stringify(business)
+        headers: {"Content-Type": "multipart/form-data"},
+        body: formData
     })
+
     const newBusiness = await response.json()
     if(newBusiness){
         dispatch(actionAddBusiness(newBusiness))
@@ -42,14 +75,46 @@ export const createBusiness = business => async dispatch => {
 }
 
 export const editBusinessThunk = editBusiness => async dispatch => {
+    const {
+        id,
+        hours,
+        userId,
+        title,
+        description,
+        address,
+        city,
+        state,
+        zipcode,
+        phone,
+        websiteUrl,
+        tagId, 
+        image } = editBusiness
+       
+    
+        const formData = new FormData();
+        formData.append("id", id);
+        formData.append("userId", userId);
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("address", address);
+        formData.append("city", city);
+        formData.append("state", state);
+        formData.append("hours", hours);
+        formData.append("zipcode", zipcode);
+        formData.append("phone", phone);
+        formData.append("websiteUrl", websiteUrl);
+        formData.append("tagId", tagId);
+        if(image) formData.append("image", image);
+
+
     const response = await csrfFetch('/api/businesses', {
         method: 'PUT',
-        body: JSON.stringify(editBusiness)
+        headers: {"Content-Type": "multipart/form-data"},
+        body: formData
     })
     const editedBusiness = await response.json()
-    if(editBusiness){
-        dispatch(actionAddBusiness(editBusiness))
-    }
+        dispatch(actionAddBusiness(editedBusiness))
+   
     return editedBusiness
 }
 

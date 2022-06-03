@@ -20,7 +20,7 @@ const BusinessEditForm = () => {
     const [state, setState] = useState(editBusiness.state || '')
     const [zipcode, setZipcode] = useState(editBusiness.zipcode || '')
     const [phone, setPhone] = useState(editBusiness.phone || '')
-    const [photoUrl, setPhotoUrl] = useState(editBusiness.photoUrl || '')
+    const [image, setImage] = useState(null)
     const [websiteUrl, setWebsiteUrl] = useState(editBusiness.websiteUrl || '')
     const [hours, setHours] = useState(editBusiness.hours || '')
 
@@ -39,8 +39,8 @@ const BusinessEditForm = () => {
 
         const userId = sessionUser.id
         const editingBusiness = {
-            hours,
             id: editBusiness.id,
+            hours,
             userId,
             title,
             description,
@@ -49,10 +49,12 @@ const BusinessEditForm = () => {
             state,
             zipcode,
             phone,
-            photoUrl,
+            image,
             websiteUrl,
             tagId
         }
+     
+
         dispatch(editBusinessThunk(editingBusiness))
             .then(()=> history.push('/'))
             .catch(async (res) => {
@@ -67,6 +69,11 @@ const BusinessEditForm = () => {
         dispatch(deleteBusinessThunk(editBusiness))
             .then(() => history.push('/'))
     }
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+      };
 
     return (
         <div id='business-creation-container'>
@@ -142,12 +149,13 @@ const BusinessEditForm = () => {
                     placeholder='Business Phone Number'
                 />
                 <label>Picture URL</label>
+                <label>Image Upload</label>
                 <input
-                    name="photoUrl"
-                    type='text'
-                    value={photoUrl}
-                    onChange={e => setPhotoUrl(e.target.value)}
-                    placeholder='Business Picture Url'
+                    name="image"
+                    type='file'
+
+                    onChange={updateFile}
+                    placeholder='Business Picture'
                 />
                 <label>Website URL</label>
                 <input

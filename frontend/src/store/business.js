@@ -58,7 +58,7 @@ const {
     formData.append("tagId", tagId);
     
     if(image) formData.append("image", image);
-    
+ 
 
 
     const response = await csrfFetch('/api/businesses', {

@@ -77,9 +77,13 @@ router.post('/',  singleMulterUpload('image'), validateBusiness, requireAuth, as
     websiteUrl,
     tagId, 
     } = req.body
+    let {image} =  req.body
 
-
-    const photoUrl = await singlePublicFileUpload(req.file);
+    if(req.file){
+     photoUrl = await singlePublicFileUpload(req.file);
+    }else{
+      photoUrl = image
+    }
 
   const newBusiness = await Business.create({
     hours,

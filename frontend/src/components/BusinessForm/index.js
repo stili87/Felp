@@ -17,7 +17,7 @@ const BusinessFormPage = () => {
     const [state, setState] = useState('')
     const [zipcode, setZipcode] = useState('')
     const [phone, setPhone] = useState('')
-    const [image, setImage] = useState(null)
+    let [image, setImage] = useState(null)
     const [websiteUrl, setWebsiteUrl] = useState('')
     const [errors, setErrors] = useState([]);
     const [hours, setHours] = useState('')
@@ -32,7 +32,12 @@ const BusinessFormPage = () => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
-
+        console.log(image, 'IMAGE!!!!!!!!')
+        if(!image){
+            image = 'https://hpcismart.com/images/website/ManChemNews/DIR_148/F_85752.jpg'
+        }
+        console.log(image, 'IMAGE!!!!!!!!')
+        
         const userId = sessionUser.id
         const newBusiness = {
             hours,

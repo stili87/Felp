@@ -14,6 +14,7 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
   const [biography, setBiography] = useState('')
   const [fullName, setFullName] = useState('')
+  let [picSrc, setPicSrc] = useState('')
   
 
   if (sessionUser) return <Redirect to="/listings" />;
@@ -22,7 +23,8 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password, biography, fullName }))
+      if(!picSrc) picSrc = 'https://www.hrlact.org/wp-content/uploads/2020/12/generic-user-icon.jpg'
+      return dispatch(sessionActions.signup({ email, username, password, biography, fullName, picSrc }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -44,6 +46,7 @@ function SignupFormPage() {
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
+          placeholder='e.g. John Smith'
           required
         />
       <label>
@@ -54,6 +57,7 @@ function SignupFormPage() {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder='e.g. john@gmail.com'
           required
         />
       <label>
@@ -64,6 +68,7 @@ function SignupFormPage() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          placeholder='e.g. John321'
           required
         />
       <label>
@@ -75,7 +80,19 @@ function SignupFormPage() {
             type='text'
             value={biography}
             onChange={(e) => setBiography(e.target.value)}
+            placeholder='Short Blurb about you.'
             required
+        />
+        <label>
+        Profile Picture Url
+        </label>
+        <input 
+            rows='50'
+            className="sign-up-input"
+            type='text'
+            value={picSrc}
+            onChange={(e) => setPicSrc(e.target.value)}
+            placeholder='Optional'
         />
       <label>
         Password

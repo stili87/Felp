@@ -10,10 +10,7 @@ const BusinessCard = ({ business }) => {
         history.push(`/business/edit/${business.id}`)
     }
 
-    // const handleDelete = business => {
-    //     dispatch(deleteBusinessThunk(business))
-    //         .then(() => history.push('/'))
-    // }
+
 
     return (
         <div className="business-card-wrapper">
@@ -24,8 +21,6 @@ const BusinessCard = ({ business }) => {
             <p className="business-card-address">{business.city} {business.state}, {business.zipcode}</p>
             <p className="business-card-phone">{business.phone}</p>
             {sessionUser && sessionUser.id === business.userId && <button className="business-card-delete" onClick={() => handleEdit(business)}>Edit Business</button>}
-                {/* {sessionUser && sessionUser.id === business.userId && <button onClick={() => handleDelete(business)}>Delete Business</button>} */}
-
         </div>
     )
 }

@@ -20,75 +20,83 @@ const BusinessSingle = () => {
     let thisTag;
     const [displayReview, setDisplayReview] = useState(false)
     const dispatch = useDispatch()
-   
-    useEffect(()=> {
-        dispatch(getBusinessReviews(businessId))
-    },[dispatch, businessId])
+    const owner = useSelector(state => state.users)[business.userId]
 
-    if(allTags && business){
+    useEffect(() => {
+        dispatch(getBusinessReviews(businessId))
+    }, [dispatch, businessId])
+
+    if (allTags && business) {
         thisTag = allTags[business.tagId]
     }
-    if(!sessionUser){
-        sessionUser = {id: 0}
+    if (!sessionUser) {
+        sessionUser = { id: 0 }
     }
 
     const handleEdit = business => {
         history.push(`/business/edit/${business.id}`)
     }
 
-    
+
 
     useEffect(() => {
         dispatch(getAllTags())
-      },[dispatch])
+    }, [dispatch])
 
-      useEffect(() => {
+    useEffect(() => {
         dispatch(getAllTags())
-      },[dispatch])
+    }, [dispatch])
 
     return (
         <>
-        {business &&
-            <div id='single-business-wrapper'>
-            <div style={{ background: `url(${business.photoUrl})` }} id='single-business-img'>
-                <div className='single-business-infomation'>
-                    <h1 className='business-header'>{business.title}</h1>
-                    <h2 className='business-type'>{thisTag}</h2>
-                    <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
-                    {sessionUser.id === business.userId && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
-                    {sessionUser.id &&  <button onClick={() => setDisplayReview(!displayReview)} className='edit-button'>Review Business</button>}
-                    <Likes businessId={business.id} />
-                </div>
-            </div>
-            {reviews && displayReview && <ReviewForm setDisplayReview={setDisplayReview} business={business} />}
-            <div className='description-div'>
-                <p className='description-text'>Description</p>
-                <p>{business.description}</p>
-                </div>
-            <div className='single-business-location'>
-                <p className='location-text'> Location & Hours</p>
-                <div className='location-hours-div'>
-                    <div className='address'>
-                    <p>Address</p>
-                    <p>{business.address}</p>
-                    <p>{business.city} {business.state}, {business.zipcode}</p>
+            {business &&
+                <div id='single-business-wrapper'>
+                    <div style={{ background: `url(${business.photoUrl})` }} id='single-business-img'>
+                        <div className='single-business-infomation'>
+                            <h1 className='business-header'>{business.title}</h1>
+                            <h2 className='business-type'>{thisTag}</h2>
+                            <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
+                            <h2 className='owner-head'>Owner:</h2>
+                            <div className='owner-div'>
+                                <img alt='owner-pic' className='owner-pic' src={owner.picSrc}></img>
+                                <h3 className='owner-name'>{owner.fullName}</h3>
+                            </div>
+                            <div className='button-container'>
+                            <Likes businessId={business.id} />
+                            {sessionUser.id === business.userId && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
+                            {sessionUser.id && <button onClick={() => setDisplayReview(!displayReview)} className='edit-button'>Review Business</button>}
+                            </div>
+                        </div>
                     </div>
-                    <div className='Hours'>
-                    <p>Hours</p>
-                    <p>{business.hours}</p>
+                    {reviews && displayReview && <ReviewForm setDisplayReview={setDisplayReview} business={business} />}
+                    <div className='description-div'>
+                        <p className='description-text'>Description</p>
+                        <p>{business.description}</p>
+                    </div>
+                    <div className='single-business-location'>
+                        <p className='location-text'> Location & Hours</p>
+                        <div className='location-hours-div'>
+                            <div className='address'>
+                                <p>Address</p>
+                                <p>{business.address}</p>
+                                <p>{business.city} {business.state}, {business.zipcode}</p>
+                            </div>
+                            <div className='Hours'>
+                                <p>Hours</p>
+                                <p>{business.hours}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='reivew-div'>
+                        <p id='reviews-header'>Reviews</p>
+                        {reviews.length < 1 && <p>No Reviews Yet</p>}
+                        {reviews.length > 0 &&
+                            reviews.map(review => <ReviewDisplay key={review.id} business={business} review={review} />)
+                        }
                     </div>
                 </div>
-            </div>
-            <div className='reivew-div'>
-                <p id='reviews-header'>Reviews</p>
-                {reviews.length < 1 && <p>No Reviews Yet</p>}
-                {reviews.length > 0 &&
-                    reviews.map(review => <ReviewDisplay key={review.id} business={business} review={review}/>)
-                }
-            </div>
-        </div>
-    }
-</> 
+            }
+        </>
     )
 
 }

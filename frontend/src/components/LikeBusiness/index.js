@@ -43,7 +43,7 @@ const Likes = ({ businessId }) => {
     return (
         <div className="likes-div">
             {sessionUser && <button onClick={() => handleLike()} className={'button-unliked'}>{!liked ? 'Like this Business' : 'Unlike this Business'}</button>}
-            <p className='likeCounter'>Total Likes: {totalLikes}</p>
+            <p className='likeCounter'>Likes: {totalLikes}</p>
         </div>
     )
 

@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import BusinessSingle from "./components/BusinessSingle";
 import { getAllUsers } from "./store/users";
 import About from "./components/About";
+import FourOFour from "./components/404";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ function App() {
             <About />
           </Route>
           <Route>
-            Page not Found
+           <FourOFour />
           </Route>
         </Switch>
       )}

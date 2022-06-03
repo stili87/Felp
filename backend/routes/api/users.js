@@ -45,6 +45,9 @@ const validateSignup = [
   check('fullName')
     .exists({checkFalsy: true})
     .withMessage('Biography must be filled out.'),
+  check('picSrc')
+  .exists({checkFalsy: true})
+  .withMessage('Picutre Url must be filled out.'),
   handleValidationErrors
 ];
 
@@ -58,8 +61,8 @@ const validateSignup = [
     '/',
     validateSignup,
     asyncHandler(async (req, res) => {
-      const { email, password, username, biography, fullName } = req.body;
-      const user = await User.signup({ email, username, password, biography, fullName });
+      const { email, password, username, biography, fullName, picSrc } = req.body;
+      const user = await User.signup({ email, username, password, biography, fullName, picSrc });
       await setTokenCookie(res, user);
       return res.json({
         user,

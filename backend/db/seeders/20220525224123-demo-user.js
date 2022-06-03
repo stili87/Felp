@@ -10,21 +10,32 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password'),
         fullName: 'Demo Lition',
         biography: "I am a demo user",
+        picSrc: 'https://www.hrlact.org/wp-content/uploads/2020/12/generic-user-icon.jpg'
       },
       {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2'),
-        fullName: 'Fake User1',
-        biography: "I am a demo user",
+        email: 'stili87@gmail.com',
+        username: 'stili87',
+        hashedPassword: bcrypt.hashSync('password'),
+        fullName: 'Andrew Stilinovic',
+        biography: "Hello, from St. Louis Missouri.  I am learning to be a software engineer",
+        picSrc: 'https://klinelawstl.com/wp-content/uploads/2019/05/Andrew1.jpg'
 
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3'),
-        fullName: 'Fake User2',
-        biography: "I am a demo user"
+        email: 'john@johnAllan.com',
+        username: 'johnAllan',
+        hashedPassword: bcrypt.hashSync('password'),
+        fullName: 'John Allan Hinds',
+        biography: "Hello, from New Jersey.  I am a former professional poker player",
+        picSrc: 'https://pbs.twimg.com/profile_images/1349201944376700928/bDUxYtla_400x400.jpg'
+      },
+      {
+        email: 'joe@joeDonahay.com',
+        username: 'ArchdukeJosef',
+        hashedPassword: bcrypt.hashSync('password'),
+        fullName: 'Joseph Donahay',
+        biography: "Hello, from Kansas City.  I am a high school histroy teacher",
+        picSrc: 'https://sites.google.com/site/donahayacademy/_/rsrc/1395360574107/home/JoeDelphi2.jpg'
       }
     ], {});
   },

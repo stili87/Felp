@@ -16,9 +16,14 @@
 
 
 
-.single-business-information {
+.single-business-infomation {
     display: flex;
     flex-direction: column;
+    background-color: grey;
+    opacity: 0.95;
+    width: 40%;
+    padding-top: 10px;
+    border-radius: 25px;
 }
 .business-header {
     color: white;
@@ -55,12 +60,12 @@
     -webkit-text-stroke-color: black;
 }
 .edit-button {
-    margin-left: 100px;
+    margin-left: 50px;
     margin-bottom: 25px;
     width: 150px;
     background-color: #d32323;
     border: none;
-    height: 23px;
+    height: 50px;
     color: white;
     font-size: 15px;
     font-weight: 550;
@@ -123,4 +128,33 @@
     font-size: 25px;
     font-weight: 600;
 
+}
+
+.owner-div {
+    display: flex;
+    padding-left: 100px;
+    align-items: center;
+    gap:15px;
+    margin-bottom: 5px;
+}
+.owner-pic{
+    height: 70px;
+    border-radius: 50%;
+}
+.owner-head {
+    padding-left: 100px;
+    padding-bottom: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.owner-name {
+    color: white;
+    font-weight: 600;
+}
+
+.button-container {
+    display: flex;
+    padding-right: 10px;
 }

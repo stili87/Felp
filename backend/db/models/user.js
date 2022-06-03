@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
+    },
+    picSrc: {
+      type: DataTypes.TEXT,
+      allowNull: false
     }
   },
   {
@@ -66,8 +70,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
-    const { id, username, email, fullName, biography } = this; // context will be the User instance
-    return { id, username, email, fullName, biography };
+    const { id, username, email, fullName, biography, picSrc } = this; // context will be the User instance
+    return { id, username, email, fullName, biography, picSrc };
   };
   
 
@@ -94,14 +98,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  User.signup = async function ({ username, email, password, biography, fullName }) {
+  User.signup = async function ({ username, email, password, biography, fullName, picSrc }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword,
       biography,
-      fullName
+      fullName,
+      picSrc
     });
     return await User.scope('currentUser').findByPk(user.id);
   };

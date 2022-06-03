@@ -1,0 +1,21 @@
+.four-container {
+    position: absolute;
+    top: 33%;
+    left: 42%;
+    font-size: 40px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+
+}
+
+.four-link {
+    text-align: center;
+    font-size: 30px;
+    color: #d32323;
+}
+
+.four-link:hover {
+    text-decoration: none;
+}

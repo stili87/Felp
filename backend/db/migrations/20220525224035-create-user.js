@@ -30,6 +30,10 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false
       },
+      picSrc: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

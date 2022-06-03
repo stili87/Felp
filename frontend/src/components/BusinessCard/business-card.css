@@ -23,6 +23,7 @@
     max-height: 150px;
     min-height: 150px;
     cursor: pointer;
+    border-bottom: 1px solid black;
 }
 
 .business-card-name {

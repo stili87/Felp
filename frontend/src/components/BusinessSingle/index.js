@@ -103,8 +103,8 @@ const BusinessSingle = () => {
                     </div>
                     <div className='reivew-div'>
                         <p id='reviews-header'>Reviews</p>
-                        {thisReviews.length < 1 && <p>No Reviews Yet</p>}
-                        {thisReviews.length > 0 &&
+                        {thisReviews && thisReviews.length < 1 && <p>No Reviews Yet</p>}
+                        {thisReviews && thisReviews.length > 0 &&
                             thisReviews.map(review => <ReviewDisplay key={review.id} business={business} review={review} />)
                         }
                     </div>

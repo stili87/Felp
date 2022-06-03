@@ -23,7 +23,7 @@ const BusinessSingle = () => {
     const owners = Object.values(useSelector(state => state.users))
     let owner;
 
-    if(owners && owners.length > 0){
+    if(owners && business && owners.length > 0){
         owner = owners.find(owner => owner.id === business.userId)
     }
 

@@ -89,7 +89,7 @@ export const editBusinessThunk = editBusiness => async dispatch => {
         websiteUrl,
         tagId, 
         image } = editBusiness
-        console.log(editBusiness)
+       
     
         const formData = new FormData();
         formData.append("id", id);
@@ -113,8 +113,7 @@ export const editBusinessThunk = editBusiness => async dispatch => {
         body: formData
     })
     const editedBusiness = await response.json()
-    console.log(editBusiness)
-        dispatch(actionAddBusiness(editBusiness))
+        dispatch(actionAddBusiness(editedBusiness))
    
     return editedBusiness
 }

@@ -53,7 +53,7 @@ const BusinessEditForm = () => {
             websiteUrl,
             tagId
         }
-        console.log(image)
+     
 
         dispatch(editBusinessThunk(editingBusiness))
             .then(()=> history.push('/'))

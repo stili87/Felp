@@ -94,8 +94,9 @@ router.post('/',  singleMulterUpload('image'), validateBusiness, requireAuth, as
 }))
 
 router.put('/', singleMulterUpload('image'), validateBusiness, requireAuth, asyncHandler(async (req, res) => {
-  console.log(req.file)
+  
   const {
+    hours,
     id,
     userId,
     title,
@@ -108,13 +109,29 @@ router.put('/', singleMulterUpload('image'), validateBusiness, requireAuth, asyn
     websiteUrl,
     tagId } = req.body
     let photoUrl;
+    let newBusiness
     
+    const editBusiness = await Business.findByPk(id)
+
 if(req.file){
     photoUrl = await singlePublicFileUpload(req.file);
-}
-
-  const editBusiness = await Business.findByPk(id)
-  const newBusiness = await editBusiness.update({
+    newBusiness = await editBusiness.update({
+      hours,
+      userId,
+      title,
+      description,
+      address,
+      city,
+      state,
+      zipcode,
+      phone,
+      photoUrl,
+      websiteUrl,
+      tagId
+    })
+}else {
+  newBusiness = await editBusiness.update({
+    hours,
     userId,
     title,
     description,
@@ -123,11 +140,11 @@ if(req.file){
     state,
     zipcode,
     phone,
-    photoUrl,
     websiteUrl,
     tagId
-  })
-console.log(newBusiness)
+})
+}
+
   return res.json(newBusiness)
 }))
 

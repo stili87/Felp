@@ -17,7 +17,7 @@ const BusinessFormPage = () => {
     const [state, setState] = useState('')
     const [zipcode, setZipcode] = useState('')
     const [phone, setPhone] = useState('')
-    const [photoUrl, setPhotoUrl] = useState('')
+    const [image, setImage] = useState(null)
     const [websiteUrl, setWebsiteUrl] = useState('')
     const [errors, setErrors] = useState([]);
     const [hours, setHours] = useState('')
@@ -44,10 +44,11 @@ const BusinessFormPage = () => {
             state,
             zipcode,
             phone,
-            photoUrl,
+            image,
             websiteUrl,
             tagId
         }
+
         dispatch(createBusiness(newBusiness))
             .then(() => history.push('/'))
             .catch(async (res) => {
@@ -56,6 +57,11 @@ const BusinessFormPage = () => {
             })
 
     }
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+      };
 
     return (
         <div id='business-creation-container'>
@@ -130,13 +136,12 @@ const BusinessFormPage = () => {
                     onChange={e => setPhone(e.target.value)}
                     placeholder='Business Phone Number'
                 />
-                <label>Picture URL</label>
+                <label>Image Upload</label>
                 <input
-                    name="photoUrl"
-                    type='text'
-                    value={photoUrl}
-                    onChange={e => setPhotoUrl(e.target.value)}
-                    placeholder='Business Picture Url'
+                    name="image"
+                    type='file'
+                    onChange={updateFile}
+                    placeholder='Business Picture'
                 />
                 <label>Website URL</label>
                 <input

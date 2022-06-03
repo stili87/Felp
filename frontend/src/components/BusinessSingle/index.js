@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import './business-single.css'
-import { getAllTags } from '../../store/tag'
 import ReviewForm from '../ReviewForm'
-import { getBusinessReviews } from '../../store/review'
 import ReviewDisplay from '../ReviewDisplay'
 import Likes from '../LikeBusiness'
+import { getBusinessReviews } from '../../store/review'
+import { getAllUsers } from '../../store/users'
 
 
 
@@ -20,11 +20,27 @@ const BusinessSingle = () => {
     let thisTag;
     const [displayReview, setDisplayReview] = useState(false)
     const dispatch = useDispatch()
-    const owner = useSelector(state => state.users)[business.userId]
+    const owners = Object.values(useSelector(state => state.users))
+    let owner;
 
-    useEffect(() => {
-        dispatch(getBusinessReviews(businessId))
-    }, [dispatch, businessId])
+    if(owners && owners.length > 0){
+        owner = owners.find(owner => owner.id === business.userId)
+    }
+
+
+    useEffect(()=> {dispatch(getBusinessReviews())},[dispatch])
+    useEffect(()=> {dispatch(getAllUsers())},[dispatch])
+
+    let thisReviews;
+    if(reviews && business && reviews.length > 0){
+    thisReviews = reviews.filter(review => {
+        if(review.businessId === business.id){
+            console.log(review)
+            return review
+        }
+    })
+}
+
 
     if (allTags && business) {
         thisTag = allTags[business.tagId]
@@ -39,13 +55,6 @@ const BusinessSingle = () => {
 
 
 
-    useEffect(() => {
-        dispatch(getAllTags())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(getAllTags())
-    }, [dispatch])
 
     return (
         <>
@@ -56,11 +65,16 @@ const BusinessSingle = () => {
                             <h1 className='business-header'>{business.title}</h1>
                             <h2 className='business-type'>{thisTag}</h2>
                             <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
+                            {owner && 
+                            <>
                             <h2 className='owner-head'>Owner:</h2>
                             <div className='owner-div'>
                                 <img alt='owner-pic' className='owner-pic' src={owner.picSrc}></img>
                                 <h3 className='owner-name'>{owner.fullName}</h3>
                             </div>
+                            </>
+                            }
+                            
                             <div className='button-container'>
                             <Likes businessId={business.id} />
                             {sessionUser.id === business.userId && <button onClick={() => handleEdit(business)} className='edit-button'>Edit Business</button>}
@@ -89,9 +103,9 @@ const BusinessSingle = () => {
                     </div>
                     <div className='reivew-div'>
                         <p id='reviews-header'>Reviews</p>
-                        {reviews.length < 1 && <p>No Reviews Yet</p>}
-                        {reviews.length > 0 &&
-                            reviews.map(review => <ReviewDisplay key={review.id} business={business} review={review} />)
+                        {thisReviews.length < 1 && <p>No Reviews Yet</p>}
+                        {thisReviews.length > 0 &&
+                            thisReviews.map(review => <ReviewDisplay key={review.id} business={business} review={review} />)
                         }
                     </div>
                 </div>

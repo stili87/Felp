@@ -26,10 +26,9 @@ router.post('/', validateReview, requireAuth, asyncHandler(async (req,res)=> {
     res.json(newReview)
 }))
 
-router.get('/:businessId', asyncHandler(async (req, res) => {
-    const businessId = req.params.businessId
-    const reviews = await Review.findAll({where: {businessId}})
-    res.json(reviews)
+router.get('/', asyncHandler(async (req, res) => {
+    const reviews = await Review.findAll()
+    return res.json(reviews)
 }))
 
 router.put('/', requireAuth, validateReview, asyncHandler(async (req, res) => {

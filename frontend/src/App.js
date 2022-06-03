@@ -14,6 +14,7 @@ import BusinessSingle from "./components/BusinessSingle";
 import { getAllUsers } from "./store/users";
 import About from "./components/About";
 import FourOFour from "./components/404";
+import { getBusinessReviews } from "./store/review";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,10 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllUsers())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getBusinessReviews())
   }, [dispatch])
 
 

@@ -27,9 +27,12 @@ const loadReviews = reviews => {
 }
 
 
+
+
 export const getBusinessReviews = businessId => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${businessId}`)
+    const response = await csrfFetch(`/api/reviews`)
     if(response.ok){
+        console.log(response)
         const businessReviews = await response.json()
         dispatch(loadReviews(businessReviews))
     }

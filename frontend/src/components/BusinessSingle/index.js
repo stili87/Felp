@@ -31,7 +31,7 @@ const BusinessSingle = () => {
     useEffect(()=> {dispatch(getBusinessReviews())},[dispatch])
     useEffect(()=> {dispatch(getAllUsers())},[dispatch])
 
-    let thisReviews;
+    let thisReviews = [];
     if(reviews && business && reviews.length > 0){
     thisReviews = reviews.filter(review => {
         if(review.businessId === business.id){
@@ -103,7 +103,7 @@ const BusinessSingle = () => {
                     </div>
                     <div className='reivew-div'>
                         <p id='reviews-header'>Reviews</p>
-                        {thisReviews && thisReviews.length < 1 && <p>No Reviews Yet</p>}
+                        {thisReviews.length < 1 && <p>No Reviews Yet</p>}
                         {thisReviews && thisReviews.length > 0 &&
                             thisReviews.map(review => <ReviewDisplay key={review.id} business={business} review={review} />)
                         }

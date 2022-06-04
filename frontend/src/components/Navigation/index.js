@@ -39,6 +39,9 @@ function Navigation({ isLoaded }) {
           Felp</NavLink>
       </div>
       <div id='nav-bar-right'>
+          <NavLink className='nav-link' exact to="/about">
+        About
+          </NavLink>
       <NavLink className='nav-link' exact to="/listings">Businesses</NavLink>
         {isLoaded && sessionLinks}
       </div>

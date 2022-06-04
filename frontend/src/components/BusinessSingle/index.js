@@ -34,9 +34,7 @@ const BusinessSingle = () => {
     let thisReviews = [];
     if(reviews && business && reviews.length > 0){
     thisReviews = reviews.filter(review => {
-        if(review.businessId === business.id){
-            return review
-        }
+        return review.businessId === business.id
     })
 }
 

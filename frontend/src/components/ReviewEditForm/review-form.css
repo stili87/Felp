@@ -69,3 +69,11 @@
     display: flex;
     gap: 20px
 }
+.review-form > ul {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    color:#d32323
+}

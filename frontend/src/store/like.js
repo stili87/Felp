@@ -28,7 +28,7 @@ const getLikes = likes => {
 export const deleteLikeThunk = like => async dispatch =>  {
     const response = await csrfFetch('/api/likes', {
         method: "DELETE",
-        boody: JSON.stringify(like)
+        body: JSON.stringify(like)
     })
     const deleteResultId = await response.json()
     dispatch(deleteLike(deleteResultId))

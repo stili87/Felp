@@ -113,6 +113,7 @@ export const editBusinessThunk = editBusiness => async dispatch => {
         body: formData
     })
     const editedBusiness = await response.json()
+        editedBusiness.userId = Number(userId)
         dispatch(actionAddBusiness(editedBusiness))
    
     return editedBusiness
@@ -124,7 +125,7 @@ export const deleteBusinessThunk = deleteBusiness => async dispatch => {
         body: JSON.stringify(deleteBusiness)
     })
     const deleteResultId = await response.json()
-    dispatch(actionDeleteBusinesses(deleteResultId))
+    dispatch(actionDeleteBusinesses(deleteBusiness.id))
     return deleteResultId
 }
 

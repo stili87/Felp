@@ -56,7 +56,7 @@ const BusinessEditForm = () => {
      
 
         dispatch(editBusinessThunk(editingBusiness))
-            .then(()=> history.push('/'))
+            .then(()=> history.push(`/business/${editBusiness.id}`))
             .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);

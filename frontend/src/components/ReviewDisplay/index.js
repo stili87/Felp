@@ -13,13 +13,20 @@ const ReviewDisplay = ({ review, business }) => {
 
     return (
         <div className='review-container'>
-            {reviewUser && <p className='review-username'>{reviewUser.fullName}</p>}
+
+            {reviewUser && 
+            <>
+            <div className='user-container'>
+                <img className='review-user-pic' src={reviewUser?.picSrc} />
+                <p className='review-username'>{reviewUser?.fullName}</p>
+           </div>
+            <p className='review-rating'>Rating: {review?.rating}/5</p>
+            </>
+                }
+
+            
             {review &&
-                <>
-                    <p className='review-rating'>Rating: {review.rating}/5</p>
-                    <p className='review-text-header'>Review:</p>
-                    <p className='review-text'>{review.comment}</p>
-                </>
+                <p className='review-text'>{review.comment}</p>
             }
             {currentUser && reviewUser && currentUser.id === reviewUser.id && <button className='edit-open-button' onClick={()=>setEditFormOpen(!editFormOpen)}>Edit Review</button>}
             {editFormOpen && <ReviewEditForm business={business} review={review} setEditFormOpen={setEditFormOpen} ></ReviewEditForm>} 

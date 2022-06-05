@@ -54,10 +54,10 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
             <p className='review-header'>Edit Your Review of {business.title}</p>
             <form className='review-form'>
                 {errors.length > 0 &&
-                    <ul>
+                <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
-                }
+                    }
                 <label>Rating: 1 to 5</label>
                 <input onChange={e => handleSetRating(e)} id='rating-input' type='text' placeholder='1 to 5' value={rating}></input>
                 <label>Review</label>

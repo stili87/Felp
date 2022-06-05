@@ -20,7 +20,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 
 router.delete('/', requireAuth, asyncHandler(async (req, res) => {
     const {businessId, userId} = req.body
-    const deleteLike = await Like.findOne({where: businessId, userId})
+    const deleteLike = await Like.findOne({where: {businessId, userId}})
     const deleteLikeId = deleteLike.id
     await deleteLike.destroy()
     res.json(deleteLikeId)

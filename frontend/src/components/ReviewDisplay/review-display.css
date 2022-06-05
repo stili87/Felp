@@ -8,6 +8,7 @@
     justify-content: center;
     padding: 20px;
     border-radius: 20px;
+    padding-left: 125px;
 }
 
 .edit-open-button {
@@ -32,6 +33,7 @@
 }
 
 .review-text {
+    margin-top: 20px;
     inline-size: 80%;
     overflow-wrap: break-word;
     max-width: 1500px;
@@ -44,4 +46,27 @@
     align-self: center;
     font-size: 30px;
     font-weight: 600;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+}
+
+.review-user-pic {
+    max-height: 50px;
+    border-radius: 50%;
+}
+
+.review-username {
+    text-decoration: underline;
+    font-size: 22px;
+}
+
+.review-rating {
+    text-align: underline;
+    color: green;
+    padding-left: 25px
 }

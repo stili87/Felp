@@ -8,18 +8,19 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkInsert('Tags', [{
-     type: 'Resturant'
-   },
-   {
-    type: 'LawFirm'
+   return queryInterface.bulkInsert('Likes', [{
+     userId: 1,
+     businessId: 4
+   },{
+    userId: 2,
+    businessId: 1
+  },{
+    userId: 3,
+    businessId: 2
   },
   {
-    type: 'Education'
-  },{
-    type: 'Grocery Store'
-  },{
-    type: 'Sports'
+    userId: 4,
+    businessId: 3
   }], {});
   },
 
@@ -30,6 +31,6 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkDelete('Tags', null, {});
+   return queryInterface.bulkDelete('Likes', null, {});
   }
 };

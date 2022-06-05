@@ -17,7 +17,7 @@ const ReviewDisplay = ({ review, business }) => {
             {reviewUser && 
             <>
             <div className='user-container'>
-                <img className='review-user-pic' src={reviewUser?.picSrc} />
+                <img className='review-user-pic' alt='review user' src={reviewUser?.picSrc} />
                 <p className='review-username'>{reviewUser?.fullName}</p>
            </div>
             <p className='review-rating'>Rating: {review?.rating}/5</p>

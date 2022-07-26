@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SignupFormPage from "../SignupFormPage";
 import './splash-page.css'
 import * as sessionActions from "../../store/session";
@@ -13,7 +13,11 @@ const SplashPage = () => {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const history = useHistory()
-    if (sessionUser) return <Redirect to="/listings" />;
+    if (sessionUser) {<Redirect to="/listings" />;}
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();

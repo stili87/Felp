@@ -27,6 +27,10 @@ const BusinessSingle = () => {
         owner = owners.find(owner => owner.id === business.userId)
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
 
     useEffect(()=> {dispatch(getBusinessReviews())},[dispatch])
     useEffect(()=> {dispatch(getAllUsers())},[dispatch])

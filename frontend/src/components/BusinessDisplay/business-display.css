@@ -1,5 +1,6 @@
 .business-img {
     max-height: 300px;
+
 }
 
 #main-page-image {
@@ -7,10 +8,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
-    height: 550px;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #main-page-header {
@@ -19,7 +23,14 @@
     font-weight: 900;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
-    
+}
+
+#main-page-subheader {
+    color: white;
+    font-size: 30px;
+    font-weight: 900;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 #main-page-full-container {

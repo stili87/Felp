@@ -13,7 +13,7 @@ const SplashPage = () => {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const history = useHistory()
-    if (sessionUser) {<Redirect to="/listings" />;}
+    if (sessionUser) {history.push("/listings");}
 
     useEffect(() => {
         window.scrollTo(0, 0)

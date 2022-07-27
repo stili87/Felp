@@ -40,7 +40,7 @@ function Navigation({ isLoaded }) {
       </div>
       <div id='nav-bar-right'>
           <NavLink className='nav-link' exact to="/about">
-        About
+        About Felp
           </NavLink>
       <NavLink className='nav-link' exact to="/listings">Businesses</NavLink>
         {isLoaded && sessionLinks}

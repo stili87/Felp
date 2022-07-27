@@ -13,19 +13,23 @@ const Footer = () => {
             </div>
             <div className="link-wrapper">
                 <p className="link-title">GitHub</p>
-                <a className="footer-link" href='https://github.com/stili87' target='_blank'>stili87</a>
+                <a rel="noreferrer" className="footer-link" href='https://github.com/stili87' target='_blank'>stili87</a>
             </div>
             <div className="link-wrapper">
                 <p className="link-title">Express</p>
-                <a className="footer-link" href='https://expressjs.com/en/api.html' target='_blank'>Express Documentation</a>
+                <a rel="noreferrer" className="footer-link" href='https://expressjs.com/en/api.html' target='_blank'>Express Documentation</a>
             </div>
             <div className="link-wrapper">
                 <p className="link-title">React</p>
-                <a className="footer-link" href='https://reactjs.org/docs/getting-started.html' target='_blank'>React Documentation</a>
+                <a rel="noreferrer" className="footer-link" href='https://reactjs.org/docs/getting-started.html' target='_blank'>React Documentation</a>
             </div>
             <div className="link-wrapper">
                 <p className="link-title">Redux</p>
-                <a className="footer-link" href='https://redux.js.org/' target='_blank'>Redux Documentation</a>
+                <a  rel="noreferrer" className="footer-link" href='https://redux.js.org/' target='_blank'>Redux Documentation</a>
+            </div>
+            <div className="link-wrapper">
+                <p className="link-title">Sequelize</p>
+                <a  rel="noreferrer" className="footer-link" href='https://sequelize.org/' target='_blank'>Sequelize Documentation</a>
             </div>
         </div>
     )

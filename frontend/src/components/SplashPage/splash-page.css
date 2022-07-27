@@ -2,8 +2,7 @@
     border-radius: 25px;
     min-width: 1000px;
     max-width: 1000px;
-    min-height: 700px;
-    max-height: 700px;
+    overflow-x: hidden;
     justify-content: center;
     display: flex;
     gap: 100px;

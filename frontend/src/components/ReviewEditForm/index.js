@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editReview, deleteReview } from '../../store/review';
+import { Rating } from 'react-simple-star-rating';
 import './review-form.css'
 
 const ReviewForm = ({ business, review, setEditFormOpen }) => {
-    const [rating, setRating] = useState(review.rating)
-    const [comment, setComment] = useState(review.comment)
+    const [rating, setRating] = useState(review?.rating*20 || 20)
+    const [comment, setComment] = useState(review?.comment)
     let sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([]);
@@ -16,7 +17,7 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
             reviewId: review.id,
             comment,
             userId: sessionUser.id,
-            rating: Number(rating),
+            rating: Number(rating)/20,
             businessId: business.id
         }
         dispatch(editReview(newReview))
@@ -41,13 +42,10 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
     const handleCancel = e => {
         setEditFormOpen(false)
     }
-    const handleSetRating = e => {
-        if (e.target.value > 0 && e.target.value <= 5) {
-            setRating(e.target.value)
-        } else {
-            setRating('')
-        }
-    }
+
+    const handleRating = (rate) => {
+        setRating(rate)
+      }
 
     return (
         <div className='review-form-container'>
@@ -59,7 +57,7 @@ const ReviewForm = ({ business, review, setEditFormOpen }) => {
                     </ul>
                     }
                 <label>Rating: 1 to 5</label>
-                <input onChange={e => handleSetRating(e)} id='rating-input' type='text' placeholder='1 to 5' value={rating}></input>
+                <Rating onClick={handleRating} ratingValue={rating} size={30} initialValue={rating}/>
                 <label>Review</label>
                 <textarea onChange={e => setComment(e.target.value)} id='comment-input' type='text' placeholder='Your Review Here' value={comment}></textarea>
                 <div id='review-button-holder'>

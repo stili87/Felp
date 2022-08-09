@@ -7,6 +7,7 @@ import ReviewDisplay from '../ReviewDisplay'
 import Likes from '../LikeBusiness'
 import { getBusinessReviews } from '../../store/review'
 import { getAllUsers } from '../../store/users'
+import { Rating } from 'react-simple-star-rating';
 
 
 
@@ -23,25 +24,33 @@ const BusinessSingle = () => {
     const owners = Object.values(useSelector(state => state.users))
     let owner;
 
+    
     if(owners && business && owners.length > 0){
         owner = owners.find(owner => owner.id === business.userId)
     }
-
+    
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-
+    
 
     useEffect(()=> {dispatch(getBusinessReviews())},[dispatch])
     useEffect(()=> {dispatch(getAllUsers())},[dispatch])
-
+    
     let thisReviews = [];
     if(reviews && business && reviews.length > 0){
-    thisReviews = reviews.filter(review => {
-        return review.businessId === business.id
-    })
-}
+        thisReviews = reviews.filter(review => {
+            return review.businessId === business.id
+        })
+    }
+    
+    const findAvgRating = () => {
+        let sum = 0
+        thisReviews?.forEach(review => sum += review?.rating)
+        return Math.floor(sum / thisReviews?.length)
+    }
 
+    let avgRating = findAvgRating()
 
     if (allTags && business) {
         thisTag = allTags[business.tagId]
@@ -64,6 +73,7 @@ const BusinessSingle = () => {
                     <div style={{ background: `url(${business.photoUrl})` }} id='single-business-img'>
                         <div className='single-business-infomation'>
                             <h1 className='business-header'>{business.title}</h1>
+                            {thisReviews.length > 0 ? <p className='business-rating'><Rating readonly={true} size={20} ratingValue={avgRating * 20} ></Rating></p> : <p className='business-rating'>New Business</p>}
                             <h2 className='business-type'>{thisTag}</h2>
                             <h2 className='business-hours'><span className='hours-text'>Hours:</span> {business.hours}</h2>
                             {owner && 

@@ -33,6 +33,11 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
+.business-rating{
+    padding-left: 100px;
+    color: white;
+    font-size: 20px;
+}
 
 .business-type {
     color: white;

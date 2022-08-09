@@ -3,7 +3,7 @@ import SignupFormPage from "../SignupFormPage";
 import './splash-page.css'
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 const SplashPage = () => {
     const sessionUser = useSelector((state) => state.session.user);

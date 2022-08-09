@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './review-display.css'
 import ReviewEditForm from '../ReviewEditForm/index'
+import { Rating } from 'react-simple-star-rating';
 
 const ReviewDisplay = ({ review, business }) => {
     const allUsers = useSelector(state => state.users)
@@ -20,7 +21,7 @@ const ReviewDisplay = ({ review, business }) => {
                 <img className='review-user-pic' alt='review user' src={reviewUser?.picSrc} />
                 <p className='review-username'>{reviewUser?.fullName}</p>
            </div>
-            <p className='review-rating'>Rating: {review?.rating}/5</p>
+           <Rating ratingValue={review?.rating * 20} size={20} readonly={true}></Rating>
             </>
                 }
 
